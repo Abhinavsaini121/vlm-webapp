@@ -1,18 +1,19 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import SplashScreen from '../components/SplashScreen/SplashScreen'; // Path check kar lein
 import Onboarding from '../pages/Auth/Onboarding';
 import Login from '../pages/Auth/Login';
+import Signup from '../pages/Auth/Signup';
 
 const AppRoutes = () => {
   return (
     <Routes>
-      {/* Sabse pehle SplashScreen dikhega */}
-      <Route path="/" element={<SplashScreen />} />
-      
-      {/* 3 second baad is route par automatic navigate ho jayega */}
-      <Route path="/onboarding" element={<Onboarding />} />
+      {/* 
+         Since App.js handles the delay, 
+         "/" should now load Onboarding directly 
+      */}
+      <Route path="/" element={<Onboarding />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
     </Routes>
   );
 };
