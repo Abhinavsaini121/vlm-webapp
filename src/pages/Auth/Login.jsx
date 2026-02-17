@@ -11,11 +11,9 @@ const Login = () => {
     
     const navigate = useNavigate();
 
-    // --- Validation & Login Logic ---
     const handleLogin = (e) => {
         e.preventDefault();
         
-        // Mobile number validation (India 10 digits)
         const mobileRegex = /^[6-9]\d{9}$/;
         
         if (!mobileRegex.test(mobile)) {
@@ -29,12 +27,9 @@ const Login = () => {
         }
 
         setError("");
-
-        // Save role to localStorage for future use
         localStorage.setItem('userRole', role);
         console.log("Role Saved:", role);
 
-        // Navigation logic based on role
         if (role === 'Student') navigate('/student-dashboard');
         else if (role === 'Teacher') navigate('/teacher-dashboard');
         else navigate('/parent-dashboard');
@@ -43,24 +38,29 @@ const Login = () => {
     return (
         <div className="min-h-screen bg-[#050810] text-white font-sans flex items-center justify-center p-0 md:p-6 relative overflow-hidden">
             
-            {/* --- ANIMATED BACKGROUND GLOWS --- */}
+            {/* --- ANIMATED BACKGROUND GLOWS (OPTIMIZED) --- */}
+            {/* Added 'transform-gpu' and reduced blur for performance */}
             <motion.div 
-                animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
-                transition={{ duration: 8, repeat: Infinity }}
-                className="absolute top-[-10%] right-[-10%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-blue-600/20 blur-[120px] rounded-full pointer-events-none"
+                animate={{ scale: [1, 1.1, 1], opacity: [0.2, 0.3, 0.2] }}
+                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                style={{ willChange: "transform, opacity" }}
+                className="absolute top-[-5%] right-[-5%] w-[300px] md:w-[400px] h-[300px] md:h-[400px] bg-blue-600/20 blur-[80px] rounded-full pointer-events-none transform-gpu"
             ></motion.div>
+            
             <motion.div 
-                animate={{ scale: [1.2, 1, 1.2], opacity: [0.1, 0.2, 0.1] }}
-                transition={{ duration: 8, repeat: Infinity, delay: 2 }}
-                className="absolute bottom-[-10%] left-[-10%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-indigo-600/20 blur-[120px] rounded-full pointer-events-none"
+                animate={{ scale: [1.1, 1, 1.1], opacity: [0.2, 0.3, 0.2] }}
+                transition={{ duration: 10, repeat: Infinity, delay: 2, ease: "linear" }}
+                style={{ willChange: "transform, opacity" }}
+                className="absolute bottom-[-5%] left-[-5%] w-[300px] md:w-[400px] h-[300px] md:h-[400px] bg-indigo-600/20 blur-[80px] rounded-full pointer-events-none transform-gpu"
             ></motion.div>
 
-            {/* --- MAIN CONTAINER WITH ENTRANCE ANIMATION --- */}
+            {/* --- MAIN CONTAINER --- */}
             <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="w-full max-w-[450px] min-h-screen md:min-h-fit md:bg-white/5 md:backdrop-blur-3xl md:border md:border-white/10 md:rounded-[3rem] p-8 md:p-10 flex flex-col relative z-10 shadow-2xl"
+                transition={{ duration: 0.6 }} // Reduced duration slightly for snappier feel
+                // Changed backdrop-blur-3xl to backdrop-blur-md (HUGE performance boost)
+                className="w-full max-w-[450px] min-h-screen md:min-h-fit md:bg-gray-900/40 md:backdrop-blur-md md:border md:border-white/10 md:rounded-[2.5rem] p-8 md:p-10 flex flex-col relative z-10 shadow-2xl"
             >
 
                 {/* --- LOGO --- */}
@@ -79,20 +79,21 @@ const Login = () => {
                 </header>
 
                 {/* --- ROLE SELECTOR --- */}
-                <div className="bg-white/5 backdrop-blur-md border border-white/10 p-1.5 rounded-full flex mb-8 relative">
+                {/* Optimized background color to reduce transparency calculation */}
+                <div className="bg-gray-800/50 border border-white/5 p-1.5 rounded-full flex mb-8 relative">
                     {['Student', 'Parent', 'Teacher'].map((item) => (
                         <button
                             key={item}
                             onClick={() => setRole(item)}
-                            className={`flex-1 py-3 rounded-full text-[13px] font-bold transition-all duration-300 relative z-10 ${
-                                role === item ? 'text-white' : 'text-gray-400'
+                            className={`flex-1 py-3 rounded-full text-[13px] font-bold transition-colors duration-200 relative z-10 ${
+                                role === item ? 'text-white' : 'text-gray-400 hover:text-gray-200'
                             }`}
                         >
                             {item}
                             {role === item && (
                                 <motion.div 
                                     layoutId="activeTab"
-                                    className="absolute inset-0 bg-[#2563eb] rounded-full -z-10 shadow-[0_0_20px_rgba(37,99,235,0.5)]"
+                                    className="absolute inset-0 bg-[#2563eb] rounded-full -z-10 shadow-lg"
                                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                                 />
                             )}
@@ -104,28 +105,28 @@ const Login = () => {
                 <form onSubmit={handleLogin} className="space-y-4">
                     {/* Mobile Input */}
                     <div className="relative">
-                        <div className="bg-white/5 border border-white/10 rounded-2xl flex items-center p-4 focus-within:border-blue-500/50 transition-all">
+                        <div className="bg-gray-800/40 border border-white/10 rounded-2xl flex items-center p-4 focus-within:border-blue-500/50 focus-within:bg-gray-800/60 transition-colors">
                             <Smartphone className="text-gray-400 mr-3" size={20} />
                             <input
                                 type="tel"
                                 value={mobile}
                                 onChange={(e) => setMobile(e.target.value.replace(/\D/g, '').slice(0, 10))}
                                 placeholder="Mobile Number"
-                                className="bg-transparent border-none focus:ring-0 flex-1 text-sm font-medium outline-none"
+                                className="bg-transparent border-none focus:ring-0 flex-1 text-sm font-medium outline-none placeholder-gray-500"
                             />
                         </div>
                     </div>
 
                     {/* Password Input */}
                     <div className="relative">
-                        <div className="bg-white/5 border border-white/10 rounded-2xl flex items-center p-4 focus-within:border-blue-500/50 transition-all">
+                        <div className="bg-gray-800/40 border border-white/10 rounded-2xl flex items-center p-4 focus-within:border-blue-500/50 focus-within:bg-gray-800/60 transition-colors">
                             <Lock className="text-gray-400 mr-3" size={20} />
                             <input
                                 type="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder="Enter Password"
-                                className="bg-transparent border-none focus:ring-0 flex-1 text-sm font-medium outline-none"
+                                className="bg-transparent border-none focus:ring-0 flex-1 text-sm font-medium outline-none placeholder-gray-500"
                             />
                         </div>
                     </div>
@@ -146,10 +147,10 @@ const Login = () => {
 
                     {/* Login Button */}
                     <motion.button 
-                        whileHover={{ scale: 1.02 }}
+                        whileHover={{ scale: 1.01 }} // Reduced scale slightly
                         whileTap={{ scale: 0.98 }}
                         type="submit"
-                        className="w-full bg-[#2563eb] hover:bg-blue-500 text-white py-4 rounded-2xl text-sm font-black shadow-[0_10px_20px_rgba(37,99,235,0.3)] transition-all flex items-center justify-center gap-2"
+                        className="w-full bg-[#2563eb] hover:bg-blue-500 text-white py-4 rounded-2xl text-sm font-black shadow-lg shadow-blue-600/20 transition-colors flex items-center justify-center gap-2"
                     >
                         LOGIN AS {role.toUpperCase()}
                         <ChevronRight size={18} />
@@ -158,19 +159,18 @@ const Login = () => {
 
                 {/* --- DIVIDER --- */}
                 <div className="flex items-center gap-4 my-8">
-                    <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-gray-800"></div>
+                    <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-gray-700"></div>
                     <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Or</span>
-                    <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent to-gray-800"></div>
+                    <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent to-gray-700"></div>
                 </div>
 
                 {/* --- GOOGLE SIGN IN --- */}
-                <motion.button 
-                    whileHover={{ backgroundColor: "rgba(255,255,255,0.1)" }}
-                    className="bg-white/5 border border-white/10 w-full py-4 rounded-2xl flex items-center justify-center gap-3 transition-all"
+                <button 
+                    className="bg-gray-800/40 border border-white/10 w-full py-4 rounded-2xl flex items-center justify-center gap-3 transition-colors hover:bg-white/5 active:scale-[0.99]"
                 >
                     <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" className="w-5 h-5" />
                     <span className="text-xs font-bold text-gray-200 uppercase tracking-widest">Sign in with Google</span>
-                </motion.button>
+                </button>
 
                 {/* --- FOOTER --- */}
                 <div className="mt-10 text-center">

@@ -1,25 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Bell, PlayCircle, UploadCloud, 
   CheckCircle2, MoreVertical, ArrowUpRight, 
   Moon, Sun, Star 
 } from 'lucide-react';
 import { motion } from 'framer-motion';
-import FloatingNav from '../../../components/Bottombar/Bottombar'; 
+import FloatingNav from '../../../../components/Bottombar/Bottombar'; 
 
-// Mocking useTheme for this example
+// --- 1. REAL THEME LOGIC (Fixed & Integrated) ---
 const useTheme = () => {
-  const [theme, setTheme] = useState('light');
-  const toggleTheme = () => {
-    const root = window.document.documentElement;
-    if (theme === 'light') {
-      root.classList.add('dark');
-      setTheme('dark');
-    } else {
-      root.classList.remove('dark');
-      setTheme('light');
+  // State initialize karte waqt hi localStorage check karega
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem("theme") || "light"; // Default light agar kuch na mile
     }
+    return "light";
+  });
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+
+    // Pehle dark class hatao clean state ke liye
+    root.classList.remove("dark");
+
+    // Agar theme dark hai, to class add karo
+    if (theme === "dark") {
+      root.classList.add("dark");
+    }
+
+    // LocalStorage me save karo taaki refresh ke baad yaad rahe
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === "dark" ? "light" : "dark"));
   };
+
   return { theme, toggleTheme };
 };
 
@@ -84,11 +100,13 @@ const Appbar = ({ theme, toggleTheme }) => {
 
 // --- MAIN SCREEN ---
 const Dashboard = () => {
+  // Yahan humne apna REAL hook use kiya hai
   const { theme, toggleTheme } = useTheme();
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-[#0f0f10] text-gray-900 dark:text-white font-sans pb-32 transition-colors duration-300">
       
+      {/* Appbar ko theme aur toggle function pass kiya */}
       <Appbar theme={theme} toggleTheme={toggleTheme} />
 
       <motion.main

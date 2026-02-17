@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 // Import your images
 import onboard1 from '../../assets/onboard images/onboard1.svg';
@@ -42,7 +43,7 @@ const ImageWithLoader = ({ src, alt }) => {
 
 const Onboarding = () => {
   const [currentStep, setCurrentStep] = useState(0);
-
+  const navigate = useNavigate();
   const slides = [
     {
       title: "Online Learning",
@@ -65,12 +66,12 @@ const Onboarding = () => {
     if (currentStep < slides.length - 1) {
       setCurrentStep(currentStep + 1);
     } else {
-      window.location.href = "/login"; 
+      navigate('/login'); 
     }
   };
 
   const handleSkip = () => {
-    window.location.href = "/login";
+    navigate('/login');
   };
 
   // Animation Variants

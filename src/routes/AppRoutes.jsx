@@ -3,8 +3,9 @@ import { Routes, Route } from 'react-router-dom';
 import Onboarding from '../pages/Auth/Onboarding';
 import Login from '../pages/Auth/Login';
 import Signup from '../pages/Auth/Signup';
-import TeacherHome from '../pages/Home/Teacher/TeacherHome';
+import TeacherHome from '../pages/Home/Teacher/Home/TeacherHome';
 import ProfileHome from '../pages/Home/Teacher/profile/Profile';
+import WalletHome from '../pages/Home/Teacher/wallet/WalletHome';
 
 const AppRoutes = () => {
   return (
@@ -18,6 +19,7 @@ const AppRoutes = () => {
       <Route path="/signup" element={<Signup />} />
       <Route path="/teacher-dashboard" element={<TeacherHome />} />
       <Route path="/profile" element={<ProfileHome />} />
+      <Route path="/earnings" element={<WalletHome />} />
     </Routes>
   );
 };
