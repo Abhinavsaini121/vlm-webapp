@@ -8,6 +8,8 @@ import ProfileHome from '../pages/Home/Teacher/profile/Profile';
 import WalletHome from '../pages/Home/Teacher/wallet/WalletHome';
 import ShortsPage from '../pages/Home/Teacher/Shorts/Shorts';
 import FeedbackReviews from '../pages/Home/Teacher/reviews/Reviews';
+import Maintenance from '../pages/Maintenance';
+
 
 const AppRoutes = () => {
   return (
@@ -24,6 +26,8 @@ const AppRoutes = () => {
       <Route path="/earnings" element={<WalletHome />} />
       <Route path="/shorts" element={<ShortsPage />} />
       <Route path="/reviews" element={<FeedbackReviews />} />
+
+      <Route path="*" element={<Maintenance />} />
     </Routes>
   );
 };
