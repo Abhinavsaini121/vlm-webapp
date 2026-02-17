@@ -6,6 +6,7 @@ import Signup from '../pages/Auth/Signup';
 import TeacherHome from '../pages/Home/Teacher/Home/TeacherHome';
 import ProfileHome from '../pages/Home/Teacher/profile/Profile';
 import WalletHome from '../pages/Home/Teacher/wallet/WalletHome';
+import ShortsPage from '../pages/Home/Teacher/Shorts/Shorts';
 
 const AppRoutes = () => {
   return (
@@ -20,6 +21,7 @@ const AppRoutes = () => {
       <Route path="/teacher-dashboard" element={<TeacherHome />} />
       <Route path="/profile" element={<ProfileHome />} />
       <Route path="/earnings" element={<WalletHome />} />
+      <Route path="/shorts" element={<ShortsPage />} />
     </Routes>
   );
 };
