@@ -20,7 +20,7 @@ const FloatingNav = () => {
   const navConfigs = {
     Student: [
       { id: 'Home', label: 'Home', icon: Home, route: '/student-dashboard' },
-      { id: 'Battle', label: 'LIVE BATTLE', icon: Swords, route: '/live-battle' },
+      { id: 'Battle', label: 'LIVE BATTLE', icon: Swords, route: '/livebattle' },
       { id: 'Transaction', label: 'Transaction', icon: ArrowRightLeft, route: '/transactions' },
       { id: 'Shorts', label: 'Shorts', icon: Film, route: '/shorts' },
       { id: 'Profile', label: 'Profile', icon: User, route: '/StudentProfile' },
