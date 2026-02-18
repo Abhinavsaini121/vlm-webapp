@@ -100,7 +100,7 @@ const ProfileHome = () => {
           transition={{ delay: 0.1 }}
           className="text-center mt-4"
         >
-            <h2 className="text-2xl font-black text-gray-900 dark:text-white">Priya Sharma</h2>
+            <h2 className="text-2xl font-black text-gray-900 dark:text-white">Abhinav Saini</h2>
             <p className="text-xs text-purple-600 dark:text-purple-400 font-bold uppercase tracking-widest mt-1">Senior Physics Faculty</p>
         </motion.div>
         
