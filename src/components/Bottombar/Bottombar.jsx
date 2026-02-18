@@ -1,26 +1,52 @@
-import React from 'react';
-import { Home, Wallet, Star, User, Film } from 'lucide-react';
-import { useNavigate, useLocation } from 'react-router-dom'; // useLocation add kiya
+import React, { useEffect, useState } from 'react';
+import { Home, Wallet, Star, User, Film, Swords, ArrowRightLeft } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const FloatingNav = () => {
   const navigate = useNavigate();
-  const location = useLocation(); // Current URL pata karne ke liye
+  const location = useLocation();
+  const [userRole, setUserRole] = useState('Student');
 
-  const navItems = [
-    { id: 'Home', label: 'Home', icon: Home, route: '/teacher-dashboard' },
-    { id: 'Shorts', label: 'Shorts', icon: Film, route: '/shorts' },
-    { id: 'Earnings', label: 'Earnings', icon: Wallet, route: '/earnings' },
-    { id: 'Reviews', label: 'Reviews', icon: Star, route: '/reviews' },
-    { id: 'Profile', label: 'Profile', icon: User, route: '/profile' },
-  ];
+  useEffect(() => {
+    // 1. LocalStorage se role fetch karo jo Login page ne save kiya tha
+    const role = localStorage.getItem('userRole');
+    if (role) {
+      setUserRole(role);
+    }
+  }, []);
+
+  // 2. Roles ke hisab se Nav Items ki configuration
+  const navConfigs = {
+    Student: [
+      { id: 'Home', label: 'Home', icon: Home, route: '/student-dashboard' },
+      { id: 'Battle', label: 'LIVE BATTLE', icon: Swords, route: '/live-battle' },
+      { id: 'Transaction', label: 'Transaction', icon: ArrowRightLeft, route: '/transactions' },
+      { id: 'Shorts', label: 'Shorts', icon: Film, route: '/shorts' },
+      { id: 'Profile', label: 'Profile', icon: User, route: '/StudentProfile' },
+    ],
+    Teacher: [
+      { id: 'Home', label: 'Home', icon: Home, route: '/teacher-dashboard' },
+      { id: 'Shorts', label: 'Shorts', icon: Film, route: '/shorts' },
+      { id: 'Earnings', label: 'Earnings', icon: Wallet, route: '/earnings' },
+      { id: 'Reviews', label: 'Reviews', icon: Star, route: '/reviews' },
+      { id: 'Profile', label: 'Profile', icon: User, route: '/TeacherProfile' },
+    ],
+    // Agar Parent ho to fallback (optional)
+    Parent: [
+        { id: 'Home', label: 'Home', icon: Home, route: '/parent-dashboard' },
+        { id: 'Profile', label: 'Profile', icon: User, route: '/profile' },
+    ]
+  };
+
+  // 3. Current Role ke items select karo (Default 'Student' agar role na mile)
+  const navItems = navConfigs[userRole] || navConfigs['Student'];
 
   return (
     <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 w-auto">
       <nav className="bg-white/90 dark:bg-[#1a1a1c]/90 backdrop-blur-lg p-2 rounded-full shadow-2xl dark:shadow-black/50 border border-gray-200 dark:border-gray-800 flex items-center gap-1 sm:gap-2">
         
         {navItems.map((item) => {
-          // Check karo agar current URL item ke route se match karta hai
           const isActive = location.pathname === item.route;
           const Icon = item.icon;
 
@@ -30,7 +56,7 @@ const FloatingNav = () => {
               onClick={() => navigate(item.route)}
               className="relative flex items-center px-4 py-3 cursor-pointer outline-none select-none"
             >
-              {/* --- ACTIVE BACKGROUND ANIMATION (The "One Click" Magic) --- */}
+              {/* --- ACTIVE BACKGROUND ANIMATION --- */}
               {isActive && (
                 <motion.div
                   layoutId="active-pill"

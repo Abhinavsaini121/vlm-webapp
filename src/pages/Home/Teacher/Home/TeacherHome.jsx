@@ -62,14 +62,14 @@ const Appbar = ({ theme, toggleTheme }) => {
         {/* --- 1. PROFILE CLICKABLE --- */}
         <motion.div 
           whileHover={{ scale: 1.05 }}
-          onClick={() => navigate('/profile')}
+          onClick={() => navigate('/TeacherProfile')}
           className="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-600 to-blue-500 p-[2px] cursor-pointer"
         >
           <div className="w-full h-full rounded-full bg-white dark:bg-[#1a1a1c] flex items-center justify-center">
             <span className="text-sm font-bold text-gray-800 dark:text-white">PR</span>
           </div>
         </motion.div>
-        <div onClick={() => navigate('/profile')} className="cursor-pointer">
+        <div onClick={() => navigate('/TeacherProfile')} className="cursor-pointer">
           <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Welcome back,</p>
           <h1 className="text-lg font-bold text-gray-900 dark:text-white">Priya</h1>
         </div>
