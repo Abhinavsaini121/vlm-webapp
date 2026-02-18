@@ -9,6 +9,7 @@ import WalletHome from '../pages/Home/Teacher/wallet/WalletHome';
 import ShortsPage from '../pages/Home/Teacher/Shorts/Shorts';
 import FeedbackReviews from '../pages/Home/Teacher/reviews/Reviews';
 import Maintenance from '../pages/Maintenance';
+import ScheduleForm from '../pages/Home/Teacher/Home/class/ScheduleClass';
 
 
 const AppRoutes = () => {
@@ -26,6 +27,7 @@ const AppRoutes = () => {
       <Route path="/earnings" element={<WalletHome />} />
       <Route path="/shorts" element={<ShortsPage />} />
       <Route path="/reviews" element={<FeedbackReviews />} />
+      <Route path="/scheduleclaas" element={<ScheduleForm />} />
 
       <Route path="*" element={<Maintenance />} />
     </Routes>
