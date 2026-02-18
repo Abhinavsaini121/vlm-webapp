@@ -1,9 +1,13 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+
 import { Star, Users, ChevronRight } from "lucide-react";
 
 const Livebattle = () => {
   const navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // Mock Data for Battle Cards
   const battleCards = [

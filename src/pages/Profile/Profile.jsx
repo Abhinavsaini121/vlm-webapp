@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   ArrowLeft,
   User,
@@ -16,6 +16,10 @@ import {
 } from "lucide-react";
 
 const Profile = () => {
+  useEffect(() => {
+  window.scrollTo(0, 0);
+}, []);
+
   const menuItems = [
     { icon: <User size={22} />, label: "Edit Profile" },
     { icon: <Wallet size={22} />, label: "Payment Option" },

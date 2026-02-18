@@ -16,6 +16,7 @@ import Maintenance from '../pages/Maintenance';
 import ScheduleForm from '../pages/Home/Teacher/Home/class/ScheduleClass';
 import StudentDashboard from '../pages/Auth/Home/Home';
 import LiveClassRoom from '../pages/Home/Teacher/Home/Live/LiveClassRoom';
+import Coursedetails  from '../pages/Auth/Home/Coursedetails';
 
 
 
@@ -30,6 +31,7 @@ const AppRoutes = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/student-dashboard" element={<StudentDashboard />} />
+      <Route path="/Coursedetails" element={<Coursedetails />} />
       <Route path="/Livebattle" element={<Livebattle />} />
       <Route path="/Joinbattle" element={<Joinbattle />} />
       <Route path="/Liveclass" element={<Liveclass />} />

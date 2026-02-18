@@ -60,7 +60,7 @@ const itemVariants = {
 
 const StudentDashboard = () => {
   const { theme, toggleTheme } = useTheme();
-  // const navigate = useNavigate(); // Uncomment if using router
+   const navigate = useNavigate(); // Uncomment if using router
 
   // Data for multiple cards
   const courses = [
@@ -280,8 +280,13 @@ const StudentDashboard = () => {
         {/* 7. Course Cards Grid */}
         <motion.div variants={containerVariants} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-2">
           {courses.map((course, index) => (
-            <CourseCard key={index} {...course} />
-          ))}
+  <CourseCard
+    key={index}
+    {...course}
+    onClick={() => navigate(`/Coursedetails`)}
+  />
+))}
+
         </motion.div>
 
         {/* 8. Ask a Teacher Instantly */}
@@ -342,10 +347,14 @@ const CourseCard = ({
   coins,
   players,
   image,
+  onClick
 }) => (
+
   <motion.div 
     variants={itemVariants}
     whileHover={{ y: -5 }}
+      onClick={onClick}
+
     className="bg-white dark:bg-[#111721] rounded-[32px] overflow-hidden border border-gray-100 dark:border-[#3abef9] transition-all shadow-sm hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_0_30px_rgba(58,190,249,0.15)] cursor-pointer group"
   >
     <div className="relative h-48 overflow-hidden">
