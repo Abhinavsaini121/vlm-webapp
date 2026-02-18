@@ -1,1 +1,5 @@
 @import "tailwindcss";
+@import "tailwindcss";
+
+/* Tailwind v4: make `dark:*` utilities respond to the `.dark` class. */
+@custom-variant dark (&:where(.dark, .dark *));
