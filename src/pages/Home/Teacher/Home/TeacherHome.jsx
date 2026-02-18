@@ -5,30 +5,25 @@ import {
   Moon, Sun, Star 
 } from 'lucide-react';
 import { motion } from 'framer-motion';
+// Ensure you have react-router-dom installed: npm install react-router-dom
+import { useNavigate } from 'react-router-dom'; 
 import FloatingNav from '../../../../components/Bottombar/Bottombar'; 
 
 // --- 1. REAL THEME LOGIC (Fixed & Integrated) ---
 const useTheme = () => {
-  // State initialize karte waqt hi localStorage check karega
   const [theme, setTheme] = useState(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem("theme") || "light"; // Default light agar kuch na mile
+      return localStorage.getItem("theme") || "light"; 
     }
     return "light";
   });
 
   useEffect(() => {
     const root = window.document.documentElement;
-
-    // Pehle dark class hatao clean state ke liye
     root.classList.remove("dark");
-
-    // Agar theme dark hai, to class add karo
     if (theme === "dark") {
       root.classList.add("dark");
     }
-
-    // LocalStorage me save karo taaki refresh ke baad yaad rahe
     localStorage.setItem("theme", theme);
   }, [theme]);
 
@@ -55,6 +50,8 @@ const itemVariants = {
 
 // --- COMPONENT: APPBAR ---
 const Appbar = ({ theme, toggleTheme }) => {
+  const navigate = useNavigate(); // Hook for navigation
+
   return (
     <motion.header 
       initial={{ y: -50, opacity: 0 }}
@@ -62,15 +59,17 @@ const Appbar = ({ theme, toggleTheme }) => {
       className="flex justify-between items-center p-6 pb-2 sticky top-0 z-40 bg-white/80 dark:bg-[#0f0f10]/80 backdrop-blur-md border-b border-gray-100 dark:border-transparent transition-colors duration-300"
     >
       <div className="flex items-center gap-3">
+        {/* --- 1. PROFILE CLICKABLE --- */}
         <motion.div 
           whileHover={{ scale: 1.05 }}
+          onClick={() => navigate('/TeacherProfile')}
           className="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-600 to-blue-500 p-[2px] cursor-pointer"
         >
           <div className="w-full h-full rounded-full bg-white dark:bg-[#1a1a1c] flex items-center justify-center">
             <span className="text-sm font-bold text-gray-800 dark:text-white">PR</span>
           </div>
         </motion.div>
-        <div>
+        <div onClick={() => navigate('/TeacherProfile')} className="cursor-pointer">
           <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Welcome back,</p>
           <h1 className="text-lg font-bold text-gray-900 dark:text-white">Priya</h1>
         </div>
@@ -86,9 +85,11 @@ const Appbar = ({ theme, toggleTheme }) => {
           {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
         </motion.button>
 
+        {/* --- 2. NOTIFICATION CLICKABLE --- */}
         <motion.div 
           whileTap={{ scale: 0.9 }}
-          className="relative p-2 bg-gray-100 dark:bg-[#1a1a1c] rounded-full border border-gray-200 dark:border-gray-800 cursor-pointer"
+          onClick={() => navigate('/notifications')}
+          className="relative p-2 bg-gray-100 dark:bg-[#1a1a1c] rounded-full border border-gray-200 dark:border-gray-800 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
         >
           <Bell size={20} className="text-gray-500 dark:text-gray-400" />
           <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-[#1a1a1c]"></span>
@@ -100,13 +101,12 @@ const Appbar = ({ theme, toggleTheme }) => {
 
 // --- MAIN SCREEN ---
 const Dashboard = () => {
-  // Yahan humne apna REAL hook use kiya hai
   const { theme, toggleTheme } = useTheme();
+  const navigate = useNavigate(); // Hook for navigation
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-[#0f0f10] text-gray-900 dark:text-white font-sans pb-32 transition-colors duration-300">
       
-      {/* Appbar ko theme aur toggle function pass kiya */}
       <Appbar theme={theme} toggleTheme={toggleTheme} />
 
       <motion.main
@@ -116,7 +116,12 @@ const Dashboard = () => {
       >
         {/* --- TOP: EARNINGS & RATING --- */}
         <motion.section variants={itemVariants} className="p-6 pt-4 space-y-4">
-          <div className="bg-white dark:bg-[#1a1a1c] border border-purple-200 dark:border-purple-500/30 rounded-3xl p-6 relative overflow-hidden shadow-lg dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] transition-colors duration-300">
+          
+          {/* --- 3. EARNINGS SUMMARY CLICKABLE --- */}
+          <div 
+            onClick={() => navigate('/earnings')}
+            className="bg-white dark:bg-[#1a1a1c] border border-purple-200 dark:border-purple-500/30 rounded-3xl p-6 relative overflow-hidden shadow-lg dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] transition-all duration-300 cursor-pointer hover:scale-[1.01] active:scale-[0.99]"
+          >
             {/* Animated Blob */}
             <motion.div 
               animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
@@ -132,7 +137,7 @@ const Dashboard = () => {
               </div>
               <motion.div 
                 whileHover={{ rotate: 45 }}
-                className="bg-emerald-100 dark:bg-[#4ade80]/10 p-2 rounded-lg cursor-pointer"
+                className="bg-emerald-100 dark:bg-[#4ade80]/10 p-2 rounded-lg"
               >
                 <ArrowUpRight size={20} className="text-emerald-600 dark:text-[#4ade80]" />
               </motion.div>
@@ -162,13 +167,19 @@ const Dashboard = () => {
         <section className="px-6 space-y-3">
           <motion.h3 variants={itemVariants} className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">Quick Actions</motion.h3>
           <div className="grid grid-cols-2 gap-3">
+            
+            {/* --- 4. GO LIVE NOW CLICKABLE --- */}
             <QuickActionButton 
+              onClick={() => navigate('/live')}
               icon={<PlayCircle size={24} className="text-purple-500 dark:text-purple-400" />}
               color="bg-purple-100 dark:bg-purple-500/20"
               title="Go Live Now"
               subtitle="Start instant session"
             />
+            
+            {/* --- 5. UPLOAD VIDEO CLICKABLE --- */}
             <QuickActionButton 
+              onClick={() => navigate('/scheduleclaas')}
               icon={<UploadCloud size={24} className="text-blue-500 dark:text-blue-400" />}
               color="bg-blue-100 dark:bg-blue-500/20"
               title="Upload Video"
@@ -181,7 +192,15 @@ const Dashboard = () => {
         <section className="px-6 mt-8 space-y-4">
           <div className="flex justify-between items-center">
             <motion.h3 variants={itemVariants} className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">Today's Schedule</motion.h3>
-            <motion.button whileTap={{ scale: 0.95 }} className="text-xs text-purple-600 dark:text-purple-400 font-bold">View All</motion.button>
+            
+            {/* --- 6. VIEW ALL CLICKABLE --- */}
+            <motion.button 
+              onClick={() => navigate('/schedule')}
+              whileTap={{ scale: 0.95 }} 
+              className="text-xs text-purple-600 dark:text-purple-400 font-bold hover:underline"
+            >
+              View All
+            </motion.button>
           </div>
 
           <div className="space-y-0 relative">
@@ -217,7 +236,6 @@ const Dashboard = () => {
         </section>
       </motion.main>
 
-      {/* --- USING THE NEW IMPORTED FLOATING NAV --- */}
       <FloatingNav />
       
     </div>
@@ -226,12 +244,14 @@ const Dashboard = () => {
 
 // --- HELPER COMPONENTS ---
 
-const QuickActionButton = ({ icon, color, title, subtitle }) => (
+// Updated to accept onClick prop
+const QuickActionButton = ({ icon, color, title, subtitle, onClick }) => (
   <motion.button 
+    onClick={onClick}
     variants={itemVariants}
     whileHover={{ scale: 1.02 }}
     whileTap={{ scale: 0.95 }}
-    className="bg-white dark:bg-[#1a1a1c] border border-gray-200 dark:border-gray-800 p-4 rounded-2xl flex flex-col items-start gap-3 transition-colors shadow-sm"
+    className="bg-white dark:bg-[#1a1a1c] border border-gray-200 dark:border-gray-800 p-4 rounded-2xl flex flex-col items-start gap-3 transition-colors shadow-sm w-full"
   >
     <div className={`w-10 h-10 ${color} rounded-xl flex items-center justify-center transition-colors`}>
       {icon}
