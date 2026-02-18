@@ -166,7 +166,7 @@ const WalletHome = () => {
 
               <button
                 onClick={handleWithdraw}
-                className="w-full bg-emerald-500 py-3 rounded-xl font-black text-white flex justify-center"
+                className="w-full bg-gradient-to-r from-[#2F80FF] to-[#56CCF2] py-3 rounded-xl font-black text-white flex justify-center"
               >
                 {loading ? <Loader2 className="animate-spin" /> : "Confirm Withdraw"}
               </button>
