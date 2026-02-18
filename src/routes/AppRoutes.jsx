@@ -15,6 +15,7 @@ import FeedbackReviews from '../pages/Home/Teacher/reviews/Reviews';
 import Maintenance from '../pages/Maintenance';
 import ScheduleForm from '../pages/Home/Teacher/Home/class/ScheduleClass';
 import StudentDashboard from '../pages/Auth/Home/Home';
+import LiveClassRoom from '../pages/Home/Teacher/Home/Live/LiveClassRoom';
 
 
 
@@ -35,11 +36,13 @@ const AppRoutes = () => {
       <Route path="/StudentProfile" element={<Profile />} />
 
       <Route path="/teacher-dashboard" element={<TeacherHome />} />
+      <Route path="/scheduleclaas" element={<ScheduleForm />} />
+      <Route path="/live" element={<LiveClassRoom />} />
       <Route path="/TeacherProfile" element={<ProfileHome />} />
       <Route path="/earnings" element={<WalletHome />} />
       <Route path="/shorts" element={<ShortsPage />} />
       <Route path="/reviews" element={<FeedbackReviews />} />
-      <Route path="/scheduleclaas" element={<ScheduleForm />} />
+      
 
       <Route path="*" element={<Maintenance />} />
     </Routes>
