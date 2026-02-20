@@ -17,6 +17,10 @@ import ScheduleForm from '../pages/Home/Teacher/Home/class/ScheduleClass';
 import StudentDashboard from '../pages/Auth/Home/Home';
 import LiveClassRoom from '../pages/Home/Teacher/Home/Live/LiveClassRoom';
 import Coursedetails  from '../pages/Auth/Home/Coursedetails';
+import Transactions from '../pages/Auth/Transactions/Transactions';
+import Popularcourse from '../pages/Popularcourse/Popularcourse';
+import Curriculum from '../pages/Curriculum/Curriculum';
+import Coursereview from '../pages/Coursereview/Coursereview';
 
 
 
@@ -31,11 +35,16 @@ const AppRoutes = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/student-dashboard" element={<StudentDashboard />} />
+      <Route path="/Popularcourse" element={<Popularcourse />} />
       <Route path="/Coursedetails" element={<Coursedetails />} />
+      <Route path="/Curriculum" element={<Curriculum/>} />
+      <Route path="/Coursereview" element={<Coursereview/>} />
       <Route path="/Livebattle" element={<Livebattle />} />
       <Route path="/Joinbattle" element={<Joinbattle />} />
       <Route path="/Liveclass" element={<Liveclass />} />
       <Route path="/StudentProfile" element={<Profile />} />
+      <Route path="/Transactions" element={<Transactions />} />
+
 
       <Route path="/teacher-dashboard" element={<TeacherHome />} />
       <Route path="/scheduleclaas" element={<ScheduleForm />} />

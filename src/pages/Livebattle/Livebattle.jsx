@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
-import { Star, Users, ChevronRight } from "lucide-react";
+import { Star, Users, ChevronRight, ArrowLeft } from "lucide-react";
+
 
 const Livebattle = () => {
   const navigate = useNavigate();
@@ -55,18 +56,34 @@ const Livebattle = () => {
 
   return (
     <div className="min-h-screen bg-[#0a0d14] text-white font-sans pb-28">
-      {/* 1. Header Section */}
-      <div className="pt-8 pb-4 text-center">
-        <h1 className="text-3xl font-black tracking-tight">
-          Live Battle Arena
-        </h1>
-        <div className="flex items-center justify-center gap-2 mt-2">
-          <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_#22c55e]"></div>
-          <span className="text-sm font-bold text-gray-400 uppercase tracking-wider">
-            5 Teachers Live Now
-          </span>
-        </div>
-      </div>
+    {/* 1. Header Section */}
+<div className="pt-8 pb-4 relative">
+  
+  {/* Back Button */}
+  <div className="absolute left-4 top-6">
+    <button
+      onClick={() => navigate(-1)}
+      className="w-12 h-12 flex items-center justify-center rounded-full bg-[#6b6b6b] hover:bg-[#5a5a5a] transition-all shadow-lg active:scale-90"
+    >
+      <ArrowLeft size={22} className="text-white" />
+    </button>
+  </div>
+
+  {/* Title */}
+  <div className="text-center">
+    <h1 className="text-3xl font-black tracking-tight">
+      Live Battle Arena
+    </h1>
+    <div className="flex items-center justify-center gap-2 mt-2">
+      <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_#22c55e]"></div>
+      <span className="text-sm font-bold text-gray-400 uppercase tracking-wider">
+        5 Teachers Live Now
+      </span>
+    </div>
+  </div>
+
+</div>
+
 
       {/* 2. Category Filters - Blue Theme */}
       <div className="flex gap-3 overflow-x-auto no-scrollbar px-4 py-6">

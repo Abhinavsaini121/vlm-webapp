@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import {
   ArrowLeft,
   User,
@@ -16,6 +18,8 @@ import {
 } from "lucide-react";
 
 const Profile = () => {
+  const navigate = useNavigate();
+
   useEffect(() => {
   window.scrollTo(0, 0);
 }, []);
@@ -42,10 +46,14 @@ const Profile = () => {
     <div className="min-h-screen bg-[#0B1220] text-white font-sans pb-10">
       {/* 1. Header Area - Isko "Corner" mein move kar diya */}
       <div className="pt-10 pl-4 sm:pl-8 pb-16">
-        <button className="hover:bg-white/10 p-2 rounded-full transition-all active:scale-90 inline-flex items-center justify-center">
-          <ArrowLeft size={32} strokeWidth={2.5} />
-        </button>
-      </div>
+  <button
+    onClick={() => navigate(-1)}
+    className="w-12 h-12 flex items-center justify-center rounded-full bg-[#6b6b6b] hover:bg-[#5a5a5a] transition-all shadow-lg active:scale-90"
+  >
+    <ArrowLeft size={22} className="text-white" />
+  </button>
+</div>
+
 
       <div className="max-w-2xl mx-auto px-5">
         {/* 2. Main Profile Card */}

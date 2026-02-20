@@ -283,7 +283,7 @@ const StudentDashboard = () => {
   <CourseCard
     key={index}
     {...course}
-    onClick={() => navigate(`/Coursedetails`)}
+    onClick={() => navigate(`/Popularcourse`)}
   />
 ))}
 
