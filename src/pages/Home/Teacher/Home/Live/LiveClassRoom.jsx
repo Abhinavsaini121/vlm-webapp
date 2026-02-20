@@ -7,7 +7,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
 // --- ASSET IMPORT ---
-// Ensure this path matches your project
 import videoBg from '../../../../../assets/short.webm'; 
 
 const LiveClassRoom = () => {
@@ -23,9 +22,9 @@ const LiveClassRoom = () => {
 
   // --- DUMMY DATA ---
   const [chatMessages, setChatMessages] = useState([
-    { id: 1, user: "Aravind Kumar", text: "Sir, is the PDF for this session available?", color: "text-blue-600 dark:text-blue-400" },
+    { id: 1, user: "Aravind Kumar", text: "Sir, is the PDF for this session available?", color: "text-[#2F80FF] dark:text-[#56CCF2]" },
     { id: 2, user: "Sneha Rao", text: "The formula on the left is slightly blurry. ✍️", color: "text-pink-600 dark:text-pink-400" },
-    { id: 3, user: "Zaid Shaikh", text: "Understood! This is much easier than the book.", color: "text-green-600 dark:text-green-400" },
+    { id: 3, user: "Zaid Shaikh", text: "Understood! This is much easier than the book.", color: "text-emerald-600 dark:text-emerald-400" },
     { id: 4, user: "Divya N.", text: "Can we get one more example for this? 💯", color: "text-yellow-600 dark:text-yellow-400" },
   ]);
 
@@ -81,8 +80,8 @@ const LiveClassRoom = () => {
   };
 
   return (
-    // Global Theme Container
-    <div className="fixed inset-0 bg-gray-50 dark:bg-[#0f0f10] text-gray-900 dark:text-white flex flex-col font-sans overflow-hidden transition-colors duration-300">
+    // Global Theme Container - Changed to Deep Slate
+    <div className="fixed inset-0 bg-gray-50 dark:bg-[#0b0f1a] text-gray-900 dark:text-white flex flex-col font-sans overflow-hidden transition-colors duration-300">
       
       {/* --- LIVE VIDEO FEED AREA --- */}
       <div className="absolute inset-0 z-0 bg-gray-200 dark:bg-[#0a0a0b]">
@@ -96,17 +95,19 @@ const LiveClassRoom = () => {
               playsInline
               className="w-full h-full object-cover"
             />
-            {/* Gradient Overlay: Ensures white text is readable over video even in light mode */}
+            {/* Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60 pointer-events-none" />
           </div>
         ) : (
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="flex flex-col items-center justify-center h-full gap-4 bg-gray-100 dark:bg-[#1a1a1c]"
+            // Changed: Background to Navy
+            className="flex flex-col items-center justify-center h-full gap-4 bg-gray-100 dark:bg-[#1a2233]"
           >
-            <div className="w-32 h-32 rounded-full bg-gradient-to-tr from-purple-600 to-blue-500 p-[3px]">
-              <div className="w-full h-full rounded-full bg-gray-100 dark:bg-[#1a1a1c] flex items-center justify-center">
+            {/* Changed: Gradient Ring to Blue/Cyan */}
+            <div className="w-32 h-32 rounded-full bg-gradient-to-tr from-[#2F80FF] to-[#56CCF2] p-[3px]">
+              <div className="w-full h-full rounded-full bg-gray-100 dark:bg-[#1a2233] flex items-center justify-center">
                  <span className="text-4xl font-bold text-gray-700 dark:text-white">PS</span>
               </div>
             </div>
@@ -127,7 +128,8 @@ const LiveClassRoom = () => {
           <div className="flex items-center gap-3">
             <button 
               onClick={handleEndClass}
-              className="p-2 rounded-full bg-white/80 dark:bg-black/30 backdrop-blur-md border border-gray-200 dark:border-white/10 text-gray-700 dark:text-white hover:bg-white dark:hover:bg-white/20 transition-all shadow-sm"
+              // Changed: BG opacity and border
+              className="p-2 rounded-full bg-white/80 dark:bg-[#1a2233]/80 backdrop-blur-md border border-gray-200 dark:border-white/10 text-gray-700 dark:text-white hover:bg-white dark:hover:bg-white/20 transition-all shadow-sm"
             >
               <ArrowLeft size={20} />
             </button>
@@ -142,18 +144,19 @@ const LiveClassRoom = () => {
 
           {/* Stats */}
           <div className="flex gap-2 mt-1">
-            <div className="bg-white/80 dark:bg-black/30 backdrop-blur-md px-3 py-1 rounded-lg border border-gray-200 dark:border-white/5 flex items-center gap-1.5 shadow-sm">
-              <Users size={12} className="text-blue-600 dark:text-blue-400" />
+            {/* Changed: BG to Navy/80, Icon to Blue */}
+            <div className="bg-white/80 dark:bg-[#1a2233]/80 backdrop-blur-md px-3 py-1 rounded-lg border border-gray-200 dark:border-white/10 flex items-center gap-1.5 shadow-sm">
+              <Users size={12} className="text-[#2F80FF] dark:text-[#56CCF2]" />
               <span className="text-[10px] font-bold text-gray-800 dark:text-gray-200">{streamMetrics.viewers}</span>
             </div>
           </div>
         </div>
 
         <div className="flex gap-2">
-            <button className="p-2.5 bg-white/80 dark:bg-black/30 backdrop-blur-md rounded-xl border border-gray-200 dark:border-white/10 text-gray-700 dark:text-white hover:bg-white dark:hover:bg-white/10 transition-colors shadow-sm">
+            <button className="p-2.5 bg-white/80 dark:bg-[#1a2233]/80 backdrop-blur-md rounded-xl border border-gray-200 dark:border-white/10 text-gray-700 dark:text-white hover:bg-white dark:hover:bg-white/10 transition-colors shadow-sm">
                 <Share2 size={18} />
             </button>
-            <button className="p-2.5 bg-white/80 dark:bg-black/30 backdrop-blur-md rounded-xl border border-gray-200 dark:border-white/10 text-gray-700 dark:text-white hover:bg-white dark:hover:bg-white/10 transition-colors shadow-sm">
+            <button className="p-2.5 bg-white/80 dark:bg-[#1a2233]/80 backdrop-blur-md rounded-xl border border-gray-200 dark:border-white/10 text-gray-700 dark:text-white hover:bg-white dark:hover:bg-white/10 transition-colors shadow-sm">
                 <MoreVertical size={18} />
             </button>
         </div>
@@ -199,7 +202,8 @@ const LiveClassRoom = () => {
                   transition={{ delay: idx * 0.1 }}
                   className="flex flex-col items-start"
                 >
-                  <div className="bg-white/90 dark:bg-black/40 backdrop-blur-md rounded-2xl rounded-tl-none px-4 py-2 border border-gray-200 dark:border-white/5 shadow-sm">
+                  {/* Changed: Chat bubble BG to Navy */}
+                  <div className="bg-white/90 dark:bg-[#1a2233]/90 backdrop-blur-md rounded-2xl rounded-tl-none px-4 py-2 border border-gray-200 dark:border-white/10 shadow-sm">
                     <span className={`text-[10px] font-black uppercase ${msg.color} tracking-tighter block mb-0.5`}>
                       {msg.user}
                     </span>
@@ -218,7 +222,8 @@ const LiveClassRoom = () => {
       <motion.div 
         initial={{ y: 100 }}
         animate={{ y: 0 }}
-        className="relative z-20 p-4 pb-6 bg-white dark:bg-[#0f0f10]/90 backdrop-blur-xl border-t border-gray-200 dark:border-white/10 rounded-t-[30px] shadow-2xl transition-colors duration-300"
+        // Changed: BG to Deep Slate
+        className="relative z-20 p-4 pb-6 bg-white dark:bg-[#0b0f1a]/90 backdrop-blur-xl border-t border-gray-200 dark:border-white/10 rounded-t-[30px] shadow-2xl transition-colors duration-300"
       >
         {/* Chat Input */}
         {showChat && (
@@ -228,11 +233,13 @@ const LiveClassRoom = () => {
               value={chatInput}
               onChange={(e) => setChatInput(e.target.value)}
               placeholder="Ask a question..."
-              className="flex-1 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-full px-4 py-2 text-sm text-gray-900 dark:text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors"
+              // Changed: Focus ring to Blue
+              className="flex-1 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-full px-4 py-2 text-sm text-gray-900 dark:text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#2F80FF] transition-colors"
             />
             <button 
               type="submit"
-              className="p-2 bg-purple-600 rounded-full text-white shadow-lg shadow-purple-600/30 hover:scale-105 active:scale-95 transition-transform"
+              // Changed: BG to Blue
+              className="p-2 bg-[#2F80FF] rounded-full text-white shadow-lg shadow-blue-600/30 hover:scale-105 active:scale-95 transition-transform"
             >
               <Send size={18} />
             </button>
@@ -262,18 +269,21 @@ const LiveClassRoom = () => {
           
           <button 
              onClick={() => setShowChat(!showChat)}
+             // Changed: Active state to Blue theme
              className={`p-4 rounded-2xl border transition-all hover:scale-105 active:scale-95 ${
                showChat 
-                ? 'bg-purple-50 border-purple-200 text-purple-600 dark:bg-white dark:text-black dark:border-white shadow-inner' 
-                : 'bg-gray-100 border-gray-200 text-gray-500 dark:bg-white/10 dark:border-white/10 dark:text-white'
+                ? 'bg-blue-50 border-blue-200 text-[#2F80FF] dark:bg-white dark:text-black dark:border-white shadow-inner' 
+                : 'bg-gray-100 border-gray-200 text-gray-500 dark:bg-[#1a2233] dark:border-white/10 dark:text-white'
              }`}
           >
             <MessageSquare size={24} />
           </button>
 
+          {/* --- END STREAM BUTTON --- */}
+          {/* Changed: Text size reduced on mobile (text-[10px] sm:text-sm) */}
           <button 
             onClick={handleEndClass}
-            className="flex-1 bg-red-500 hover:bg-red-600 py-4 rounded-2xl text-white font-black uppercase text-sm tracking-widest shadow-lg shadow-red-900/40 active:scale-95 transition-all"
+            className="flex-1 bg-red-500 hover:bg-red-600 py-4 rounded-2xl text-white font-black uppercase text-[10px] sm:text-sm tracking-widest shadow-lg shadow-red-900/40 active:scale-95 transition-all truncate"
           >
             End Stream
           </button>
@@ -291,7 +301,8 @@ const ControlButton = ({ icon, active, onClick }) => (
     className={`p-4 rounded-2xl border transition-all ${
       active 
       ? 'bg-red-50 border-red-200 text-red-500 dark:bg-red-500/20 dark:border-red-500/50 dark:text-red-500' 
-      : 'bg-gray-100 border-gray-200 text-gray-700 hover:bg-gray-200 dark:bg-white/10 dark:border-white/10 dark:text-white dark:hover:bg-white/20'
+      // Changed: Inactive dark BG to Navy (#1a2233)
+      : 'bg-gray-100 border-gray-200 text-gray-700 hover:bg-gray-200 dark:bg-[#1a2233] dark:border-white/10 dark:text-white dark:hover:bg-[#1a2233]/80'
     }`}
   >
     {React.cloneElement(icon, { size: 24 })}
