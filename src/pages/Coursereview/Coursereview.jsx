@@ -1,7 +1,9 @@
 import React from "react";
 import { ArrowLeft, Star, Heart, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export const Coursereview = () => {
+  const navigate = useNavigate();
   // Mock Data for Reviews
   const Coursereview = [
     {
@@ -156,7 +158,10 @@ export const Coursereview = () => {
 
       {/* 5. Sticky Bottom Action Button */}
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-lg z-50">
-        <button className="w-full bg-gradient-to-r from-[#2F80FF] to-[#3abef9] py-5 rounded-full flex items-center justify-between px-8 shadow-[0_10px_30px_rgba(47,128,255,0.4)] hover:brightness-110 active:scale-95 transition-all">
+        <button
+  onClick={() => navigate("/writereview")}
+  className="w-full bg-gradient-to-r from-[#2F80FF] to-[#3abef9] py-5 rounded-full flex items-center justify-between px-8 shadow-[0_10px_30px_rgba(47,128,255,0.4)] hover:brightness-110 active:scale-95 transition-all"
+>
           <span className="text-xl font-black tracking-tight text-white">
             Write a Review
           </span>

@@ -21,6 +21,7 @@ import Transactions from '../pages/Auth/Transactions/Transactions';
 import Popularcourse from '../pages/Popularcourse/Popularcourse';
 import Curriculum from '../pages/Curriculum/Curriculum';
 import Coursereview from '../pages/Coursereview/Coursereview';
+import Writereview from '../pages/Writereview/Writereview';
 
 
 
@@ -39,6 +40,7 @@ const AppRoutes = () => {
       <Route path="/Coursedetails" element={<Coursedetails />} />
       <Route path="/Curriculum" element={<Curriculum/>} />
       <Route path="/Coursereview" element={<Coursereview/>} />
+      <Route path="/Writereview" element={<Writereview/>} />
       <Route path="/Livebattle" element={<Livebattle />} />
       <Route path="/Joinbattle" element={<Joinbattle />} />
       <Route path="/Liveclass" element={<Liveclass />} />
