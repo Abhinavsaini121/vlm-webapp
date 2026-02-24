@@ -29,6 +29,7 @@ import Interview from '../pages/Auth/Interview';
 import YourVideos from '../pages/Home/Teacher/YourVideos/YourVideos';
 import Notifications from '../pages/Home/Teacher/Home/notifications/Notifications';
 import EditProfile from '../pages/Home/Teacher/profile/EditProfile';
+import Writereview from '../pages/Writereview/Writereview';
 
 
 
@@ -50,6 +51,7 @@ const AppRoutes = () => {
       <Route path="/Coursedetails" element={<Coursedetails />} />
       <Route path="/Curriculum" element={<Curriculum/>} />
       <Route path="/Coursereview" element={<Coursereview/>} />
+      <Route path="/Writereview" element={<Writereview/>} />
       <Route path="/Livebattle" element={<Livebattle />} />
       <Route path="/Joinbattle" element={<Joinbattle />} />
       <Route path="/Liveclass" element={<Liveclass />} />
