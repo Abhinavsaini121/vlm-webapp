@@ -4,20 +4,12 @@ import Onboarding from '../pages/Auth/Onboarding';
 import Login from '../pages/Auth/Login';
 import Signup from '../pages/Auth/Signup';
 import UploadDocs from '../pages/Auth/UploadDocs';
-// import Signup from '../pages/Auth/Signup';
+import Interview from '../pages/Auth/Interview';
 
-
+import Liveclass from '../pages/Liveclass/Liveclass';
 import Livebattle from '../pages/Livebattle/Livebattle';
 import Joinbattle from '../pages/Livebattle/Joinbattle';
-import Liveclass from '../pages/Liveclass/Liveclass';
-import Profile from '../pages/Profile/Profile';
-import TeacherHome from '../pages/Home/Teacher/Home/TeacherHome';
-import ProfileHome from '../pages/Home/Teacher/profile/Profile';
-import WalletHome from '../pages/Home/Teacher/wallet/WalletHome';
-import ShortsPage from '../pages/Home/Teacher/Shorts/Shorts';
-import FeedbackReviews from '../pages/Home/Teacher/reviews/Reviews';
 import Maintenance from '../pages/Maintenance';
-import ScheduleForm from '../pages/Home/Teacher/Home/class/ScheduleClass';
 import StudentDashboard from '../pages/Auth/Home/Home';
 import LiveClassRoom from '../pages/Home/Teacher/Home/Live/LiveClassRoom';
 import Coursedetails  from '../pages/Auth/Home/Coursedetails';
@@ -25,13 +17,21 @@ import Transactions from '../pages/Auth/Transactions/Transactions';
 import Popularcourse from '../pages/Popularcourse/Popularcourse';
 import Curriculum from '../pages/Curriculum/Curriculum';
 import Coursereview from '../pages/Coursereview/Coursereview';
-import Interview from '../pages/Auth/Interview';
-import YourVideos from '../pages/Home/Teacher/YourVideos/YourVideos';
-import Notifications from '../pages/Home/Teacher/Home/notifications/Notifications';
-import EditProfile from '../pages/Home/Teacher/profile/EditProfile';
 import Writereview from '../pages/Writereview/Writereview';
 
+import ShortsPage from '../pages/Home/Teacher/Shorts/Shorts';
 
+import TeacherHome from '../pages/Home/Teacher/Home/TeacherHome';
+import Notifications from '../pages/Home/Teacher/Home/notifications/Notifications';
+import EditProfile from '../pages/Home/Teacher/profile/EditProfile';
+import YourVideos from '../pages/Home/Teacher/YourVideos/YourVideos';
+import Profile from '../pages/Profile/Profile';
+import ProfileHome from '../pages/Home/Teacher/profile/Profile';
+import FeedbackReviews from '../pages/Home/Teacher/reviews/Reviews';
+import ScheduleForm from '../pages/Home/Teacher/Home/class/ScheduleClass';
+import WalletHome from '../pages/Home/Teacher/wallet/WalletHome';
+import HelpSupport from '../pages/Home/Teacher/profile/HelpSupport';
+import TeacherSettings from '../pages/Home/Teacher/profile/TeacherSettings';
 
 const AppRoutes = () => {
   return (
@@ -65,6 +65,8 @@ const AppRoutes = () => {
       <Route path="/live" element={<LiveClassRoom />} />
       <Route path="/TeacherProfile" element={<ProfileHome />} />
       <Route path="/edit-profile" element={<EditProfile />} />
+      <Route path="/support" element={<HelpSupport />} />
+      <Route path="/setting" element={<TeacherSettings />} />
       <Route path="/earnings" element={<WalletHome />} />
       <Route path="/shorts" element={<ShortsPage />} />
       <Route path="/reviews" element={<FeedbackReviews />} />

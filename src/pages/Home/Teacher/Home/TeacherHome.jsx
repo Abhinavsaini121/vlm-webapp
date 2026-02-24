@@ -55,24 +55,24 @@ const Appbar = ({ theme, toggleTheme }) => {
     <motion.header 
       initial={{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      // UPDATED: Darker background, removing heavy borders for a cleaner look
-      className="flex justify-between items-center p-6 pb-2 sticky top-0 z-40 bg-white/90 dark:bg-[#0f0f10]/90 backdrop-blur-xl border-b border-gray-100 dark:border-transparent transition-colors duration-300"
+      // STROKE: Added subtle bottom border
+      className="flex justify-between items-center p-6 pb-2 sticky top-0 z-40 bg-white/80 dark:bg-[#0b0f1a]/80 backdrop-blur-md border-b border-gray-100 dark:border-white/5 transition-colors duration-300"
     >
       <div className="flex items-center gap-3">
         {/* --- 1. PROFILE CLICKABLE --- */}
         <motion.div 
           whileHover={{ scale: 1.05 }}
           onClick={() => navigate('/profile')}
-          // UPDATED: Purple Gradient border
-          className="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-600 to-[#1a1a1c] p-[2px] cursor-pointer"
+          // GRADIENT & SHADOW: Added glow to profile ring
+          className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#2F80FF] to-[#56CCF2] p-[2px] cursor-pointer shadow-[0_0_15px_rgba(47,128,255,0.3)]"
         >
-          <div className="w-full h-full rounded-full bg-white dark:bg-[#1a1a1c] flex items-center justify-center">
-            <span className="text-sm font-bold text-gray-800 dark:text-gray-200">PR</span>
+          <div className="w-full h-full rounded-full bg-white dark:bg-[#1a2233] flex items-center justify-center">
+            <span className="text-sm font-bold text-gray-800 dark:text-white">PR</span>
           </div>
         </motion.div>
         <div onClick={() => navigate('/profile')} className="cursor-pointer">
-          <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Welcome back,</p>
-          <h1 className="text-lg font-bold text-gray-900 dark:text-white">Priya</h1>
+          <p className="text-xs text-gray-500 uppercase tracking-wider font-bold">Welcome back,</p>
+          <h1 className="text-lg font-black tracking-tight text-gray-900 dark:text-white">Priya</h1>
         </div>
       </div>
 
@@ -81,8 +81,8 @@ const Appbar = ({ theme, toggleTheme }) => {
         <motion.button 
           whileTap={{ scale: 0.9, rotate: 15 }}
           onClick={toggleTheme}
-          // UPDATED: Dark button style
-          className="p-2 bg-gray-100 dark:bg-[#1a1a1c] rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-purple-500 transition-colors"
+          // STROKE: Added border
+          className="p-2 bg-gray-100 dark:bg-[#1a2233] rounded-full border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:text-[#2F80FF] transition-colors"
         >
           {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
         </motion.button>
@@ -91,11 +91,11 @@ const Appbar = ({ theme, toggleTheme }) => {
         <motion.div 
           whileTap={{ scale: 0.9 }}
           onClick={() => navigate('/notifications')}
-          // UPDATED: Dark button style
-          className="relative p-2 bg-gray-100 dark:bg-[#1a1a1c] rounded-full border border-gray-200 dark:border-gray-800 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
+          // STROKE: Added border
+          className="relative p-2 bg-gray-100 dark:bg-[#1a2233] rounded-full border border-gray-200 dark:border-white/10 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
         >
           <Bell size={20} className="text-gray-500 dark:text-gray-400" />
-          <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-[#1a1a1c]"></span>
+          <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-[#1a2233] shadow-[0_0_8px_rgba(239,68,68,0.6)]"></span>
         </motion.div>
       </div>
     </motion.header>
@@ -108,8 +108,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   return (
-    // UPDATED: Background changed to deep matte black/charcoal (#0f0f10)
-    <div className="min-h-screen bg-gray-50 dark:bg-[#0f0f10] text-gray-900 dark:text-white font-sans pb-32 transition-colors duration-300">
+    <div className="min-h-screen bg-gray-50 dark:bg-[#0b0f1a] text-gray-900 dark:text-white font-sans pb-32 transition-colors duration-300">
       
       <Appbar theme={theme} toggleTheme={toggleTheme} />
 
@@ -121,53 +120,47 @@ const Dashboard = () => {
         {/* --- TOP: EARNINGS & RATING --- */}
         <motion.section variants={itemVariants} className="p-6 pt-4 space-y-4">
           
-          {/* --- 3. EARNINGS SUMMARY CLICKABLE --- */}
+          {/* --- 3. EARNINGS SUMMARY CARD --- */}
           <div 
             onClick={() => navigate('/earnings')}
-            // UPDATED: 
-            // 1. bg-[#131315] (Dark card)
-            // 2. border-purple-500/30 (Subtle purple stroke)
-            // 3. shadow-[0_0_30px_...] (Purple glow effect)
-            className="bg-white dark:bg-[#131315] border border-gray-200 dark:border-purple-500/30 rounded-3xl p-6 relative overflow-hidden shadow-xl dark:shadow-[0_0_30px_rgba(124,58,237,0.15)] transition-all duration-300 cursor-pointer hover:scale-[1.01] active:scale-[0.99]"
+            // STYLES: Added specific Border Color & Box Shadow (Glow)
+            className="bg-white dark:bg-[#1a2233] border border-blue-100 dark:border-[#2F80FF]/30 rounded-[32px] p-6 relative overflow-hidden shadow-xl shadow-blue-500/5 dark:shadow-[0_0_30px_-5px_rgba(47,128,255,0.15)] transition-all duration-300 cursor-pointer hover:scale-[1.01] active:scale-[0.99] group"
           >
             {/* Animated Blob */}
             <motion.div 
-              animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
+              animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
               transition={{ repeat: Infinity, duration: 5 }}
-              className="absolute top-0 right-0 w-32 h-32 bg-purple-200 dark:bg-purple-600/10 blur-[50px]" 
+              className="absolute top-0 right-0 w-40 h-40 bg-blue-200 dark:bg-[#2F80FF]/20 blur-[60px]" 
             />
             
-            <div className="flex justify-between items-start mb-4 relative z-10">
+            <div className="flex justify-between items-start mb-6 relative z-10">
               <div>
-                <p className="text-gray-500 dark:text-gray-400 text-sm font-medium">Earnings Summary</p>
-                {/* UPDATED: Neon Green text (#4ade80) for the amount */}
-                <h2 className="text-4xl font-black text-gray-900 dark:text-[#4ade80] mt-2 tracking-tight">₹45,200</h2>
-                <p className="text-gray-400 dark:text-gray-500 text-xs mt-1 font-medium italic">Total This Month</p>
+                <p className="text-gray-500 dark:text-gray-400 text-sm font-bold tracking-wide">Earnings Summary</p>
+                {/* FONT: Tracking tight for number */}
+                <h2 className="text-4xl font-black text-gray-900 dark:text-emerald-400 mt-2 tracking-tight drop-shadow-sm">₹45,200</h2>
+                <p className="text-gray-400 dark:text-gray-500 text-xs mt-1 font-bold italic">Total This Month</p>
               </div>
               <motion.div 
                 whileHover={{ rotate: 45 }}
-                // UPDATED: Dark green pill background
-                className="bg-emerald-100 dark:bg-[#4ade80]/10 p-2 rounded-lg"
+                className="bg-emerald-100 dark:bg-emerald-500/10 p-3 rounded-2xl border border-emerald-200 dark:border-emerald-500/20"
               >
-                <ArrowUpRight size={20} className="text-emerald-600 dark:text-[#4ade80]" />
+                <ArrowUpRight size={24} className="text-emerald-600 dark:text-emerald-400" />
               </motion.div>
             </div>
 
-            {/* UPDATED: Separator line color */}
-            <div className="flex gap-8 border-t border-gray-100 dark:border-gray-800 pt-4 relative z-10">
+            <div className="flex gap-8 border-t border-gray-100 dark:border-white/10 pt-5 relative z-10">
               <div>
-                <p className="text-[10px] text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-1 font-bold">Base Pay</p>
+                <p className="text-[10px] text-gray-400 dark:text-gray-500 uppercase tracking-widest font-bold mb-1">Base Pay</p>
                 <p className="text-sm font-bold text-gray-700 dark:text-gray-200 font-mono">₹35,000</p>
               </div>
               <div>
-                <p className="text-[10px] text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-1 font-bold">Bonus</p>
-                {/* UPDATED: Green accent */}
-                <p className="text-sm font-bold text-emerald-600 dark:text-[#4ade80] font-mono">₹10,200</p>
+                <p className="text-[10px] text-gray-400 dark:text-gray-500 uppercase tracking-widest font-bold mb-1">Bonus</p>
+                <p className="text-sm font-bold text-emerald-600 dark:text-emerald-400 font-mono shadow-emerald-500/50">₹10,200</p>
               </div>
               <div>
-                <p className="text-[10px] text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-1 font-bold">Rating</p>
+                <p className="text-[10px] text-gray-400 dark:text-gray-500 uppercase tracking-widest font-bold mb-1">Rating</p>
                 <div className="flex items-center gap-1">
-                  <Star size={14} className="fill-yellow-500 text-yellow-500" />
+                  <Star size={14} className="fill-yellow-500 text-yellow-500 drop-shadow-[0_0_8px_rgba(234,179,8,0.5)]" />
                   <span className="text-sm font-bold text-gray-700 dark:text-white">4.8</span>
                 </div>
               </div>
@@ -176,29 +169,22 @@ const Dashboard = () => {
         </motion.section>
 
         {/* --- MIDDLE: QUICK ACTIONS --- */}
-        <section className="px-6 space-y-3">
-          <motion.h3 variants={itemVariants} className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">Quick Actions</motion.h3>
-          <div className="grid grid-cols-2 gap-3">
+        <section className="px-6 space-y-4">
+          <motion.h3 variants={itemVariants} className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] ml-1">Quick Actions</motion.h3>
+          <div className="grid grid-cols-2 gap-4">
             
-            {/* --- 4. GO LIVE NOW CLICKABLE --- */}
             <QuickActionButton 
               onClick={() => navigate('/live')}
-              icon={<PlayCircle size={24} className="text-purple-600 dark:text-[#4ade80]" />}
-              // UPDATED: Dark card bg
-              cardBg="bg-white dark:bg-[#1a1a1c]"
-              // UPDATED: Green tint
-              color="bg-purple-100 dark:bg-[#4ade80]/10"
+              icon={<PlayCircle size={24} className="text-[#2F80FF] dark:text-[#56CCF2]" />}
+              color="bg-blue-50 dark:bg-[#2F80FF]/10"
               title="Go Live Now"
               subtitle="Start instant session"
             />
             
-            {/* --- 5. UPLOAD VIDEO CLICKABLE --- */}
             <QuickActionButton 
               onClick={() => navigate('/scheduleclaas')}
-              icon={<UploadCloud size={24} className="text-blue-500 dark:text-blue-400" />}
-              // UPDATED: Dark card bg
-              cardBg="bg-white dark:bg-[#1a1a1c]"
-              color="bg-blue-100 dark:bg-blue-500/10"
+              icon={<UploadCloud size={24} className="text-emerald-600 dark:text-emerald-400" />}
+              color="bg-emerald-50 dark:bg-emerald-500/10"
               title="Upload Video"
               subtitle="Add recorded class"
             />
@@ -206,26 +192,26 @@ const Dashboard = () => {
         </section>
 
         {/* --- BOTTOM: TODAY'S SCHEDULE --- */}
-        <section className="px-6 mt-8 space-y-4">
+        <section className="px-6 mt-8 space-y-5">
           <div className="flex justify-between items-center">
-            <motion.h3 variants={itemVariants} className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">Today's Schedule</motion.h3>
+            <motion.h3 variants={itemVariants} className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] ml-1">Today's Schedule</motion.h3>
             
-            {/* --- 6. VIEW ALL CLICKABLE --- */}
             <motion.button 
               onClick={() => navigate('/schedule')}
               whileTap={{ scale: 0.95 }} 
-              className="text-xs text-purple-600 dark:text-[#4ade80] font-bold hover:underline"
+              className="text-xs text-[#2F80FF] dark:text-[#56CCF2] font-black tracking-wide hover:underline"
             >
-              View All
+              VIEW ALL
             </motion.button>
           </div>
 
           <div className="space-y-0 relative">
+            {/* STROKE: Refined Timeline Line */}
             <motion.div 
               initial={{ height: 0 }}
               animate={{ height: "100%" }}
               transition={{ duration: 1, delay: 0.5 }}
-              className="absolute left-[11px] top-2 bottom-2 w-[2px] bg-gray-200 dark:bg-gray-800"
+              className="absolute left-[11px] top-2 bottom-2 w-[2px] bg-gray-100 dark:bg-gray-800"
             ></motion.div>
 
             <ScheduleItem 
@@ -261,21 +247,21 @@ const Dashboard = () => {
 
 // --- HELPER COMPONENTS ---
 
-const QuickActionButton = ({ icon, color, title, subtitle, onClick, cardBg }) => (
+const QuickActionButton = ({ icon, color, title, subtitle, onClick }) => (
   <motion.button 
     onClick={onClick}
     variants={itemVariants}
     whileHover={{ scale: 1.02 }}
-    whileTap={{ scale: 0.95 }}
-    // UPDATED: Dark background #1a1a1c, very subtle border
-    className={`${cardBg} border border-gray-200 dark:border-gray-800 p-4 rounded-2xl flex flex-col items-start gap-3 transition-colors shadow-sm w-full group`}
+    whileTap={{ scale: 0.98 }}
+    // STROKE & SHADOW: Added Border, Shadow on hover
+    className="bg-white dark:bg-[#1a2233] border border-gray-100 dark:border-white/5 p-5 rounded-[24px] flex flex-col items-start gap-3 transition-all shadow-sm hover:shadow-lg hover:shadow-gray-200/50 dark:hover:shadow-black/30 dark:hover:border-white/10 w-full group"
   >
-    <div className={`w-10 h-10 ${color} rounded-xl flex items-center justify-center transition-colors group-hover:scale-110 duration-300`}>
+    <div className={`w-12 h-12 ${color} rounded-2xl flex items-center justify-center transition-colors group-hover:scale-110 duration-300`}>
       {icon}
     </div>
     <div className="text-left">
-      <p className="font-bold text-sm text-gray-900 dark:text-white">{title}</p>
-      <p className="text-[10px] text-gray-500">{subtitle}</p>
+      <p className="font-bold text-sm text-gray-900 dark:text-white tracking-tight">{title}</p>
+      <p className="text-[10px] text-gray-500 font-medium">{subtitle}</p>
     </div>
   </motion.button>
 );
@@ -284,28 +270,27 @@ const ScheduleItem = ({ time, title, status, isNext }) => (
   <motion.div variants={itemVariants} className="flex gap-4 pb-6 group relative">
     <div className="relative z-10 mt-1">
       {status === 'completed' ? (
-        // UPDATED: Neon green checkmarks
-        <CheckCircle2 size={22} className="text-emerald-500 dark:text-[#4ade80] bg-gray-50 dark:bg-[#0f0f10] rounded-full" />
+        <CheckCircle2 size={22} className="text-emerald-500 dark:text-emerald-400 bg-gray-50 dark:bg-[#0b0f1a] rounded-full ring-4 ring-gray-50 dark:ring-[#0b0f1a]" />
       ) : (
-        // UPDATED: Gray borders for upcoming
-        <div className={`w-5 h-5 rounded-full border-2 transition-colors ${isNext ? 'border-purple-500 dark:border-[#4ade80] bg-white dark:bg-[#0f0f10]' : 'border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#0f0f10]'}`}></div>
+        // STROKE: Enhanced dots
+        <div className={`w-5 h-5 rounded-full border-[3px] ring-4 ring-gray-50 dark:ring-[#0b0f1a] transition-colors ${isNext ? 'border-[#2F80FF] bg-white dark:bg-[#0b0f1a] shadow-[0_0_10px_rgba(47,128,255,0.5)]' : 'border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#0b0f1a]'}`}></div>
       )}
     </div>
     <motion.div 
       whileHover={{ x: 5 }}
-      // UPDATED: Active card gets dark bg and green subtle border
-      className={`flex-1 p-4 rounded-2xl transition-all cursor-default ${isNext ? 'bg-white dark:bg-[#1a1a1c] border border-gray-200 dark:border-gray-800 shadow-lg ring-1 ring-purple-500/20 dark:ring-[#4ade80]/20' : 'bg-transparent border border-transparent hover:bg-white/50 dark:hover:bg-[#1a1a1c]/50'}`}
+      // STROKE & GLOW: Added specific glow for Next item
+      className={`flex-1 p-4 rounded-2xl transition-all cursor-default border ${isNext ? 'bg-white dark:bg-[#1a2233] border-[#2F80FF]/20 shadow-[0_4px_20px_-5px_rgba(47,128,255,0.15)]' : 'bg-transparent border-transparent hover:bg-white/50 dark:hover:bg-[#1a2233]/50'}`}
     >
       <div className="flex justify-between items-start">
         <div>
-          <p className={`text-xs font-bold uppercase tracking-tight ${status === 'completed' ? 'text-gray-400 dark:text-gray-600' : 'text-purple-600 dark:text-[#4ade80]'}`}>
+          <p className={`text-[10px] font-black uppercase tracking-wider ${status === 'completed' ? 'text-gray-400 dark:text-gray-500' : 'text-[#2F80FF] dark:text-[#56CCF2]'}`}>
             {time}
           </p>
-          <h4 className={`text-sm font-semibold mt-1 ${status === 'completed' ? 'text-gray-400 dark:text-gray-500 line-through' : 'text-gray-800 dark:text-gray-200'}`}>
+          <h4 className={`text-sm font-bold mt-1 tracking-tight ${status === 'completed' ? 'text-gray-400 dark:text-gray-500 line-through' : 'text-gray-900 dark:text-white'}`}>
             {title}
           </h4>
         </div>
-        <MoreVertical size={16} className="text-gray-400 dark:text-gray-600 cursor-pointer" />
+        <MoreVertical size={16} className="text-gray-400 dark:text-gray-600 cursor-pointer hover:text-gray-900 dark:hover:text-white transition-colors" />
       </div>
     </motion.div>
   </motion.div>

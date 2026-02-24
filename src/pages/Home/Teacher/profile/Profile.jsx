@@ -4,7 +4,8 @@ import {
   ChevronLeft, Settings, ShieldCheck, 
   Award, BookOpen, Users, LogOut, 
   ChevronRight, Wallet, LifeBuoy, VideoIcon,
-  TrendingUp, MessageSquare, Edit3
+  TrendingUp, MessageSquare, Edit3,
+  SettingsIcon
 } from 'lucide-react';
 import { motion, animate } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
@@ -43,6 +44,7 @@ const ProfileHome = () => {
     { icon: <LifeBuoy size={20} />, label: "Help & Support", path: "/support", verified: false },
     { icon: <TrendingUp size={20} />, label: "Performance", path: "/performance", verified: false },
     { icon: <MessageSquare size={20} />, label: "Feedback", path: "/reviews", verified: false },
+    { icon: <SettingsIcon size={20} />, label: "System Settings", path: "/setting", verified: false },
   ];
 
   return (
