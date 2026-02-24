@@ -3,7 +3,7 @@ import FloatingNav from '../../../../components/Bottombar/Bottombar';
 import { 
   ChevronLeft, Settings, ShieldCheck, 
   Award, BookOpen, Users, LogOut, 
-  ChevronRight, Wallet, LifeBuoy, 
+  ChevronRight, Wallet, LifeBuoy, VideoIcon,
   TrendingUp, MessageSquare, Edit3
 } from 'lucide-react';
 import { motion, animate } from 'framer-motion';
@@ -39,9 +39,10 @@ const ProfileHome = () => {
   const menuItems = [
     { icon: <Wallet size={20} />, label: "Wallet", path: "/earnings", verified: false },
     { icon: <ShieldCheck size={20} className="text-emerald-500" />, label: "KYC & Documents", path: "/kyc", verified: true },
+    { icon: <VideoIcon size={20} />, label: "Your Videos", path: "/your-videos", verified: false },
     { icon: <LifeBuoy size={20} />, label: "Help & Support", path: "/support", verified: false },
     { icon: <TrendingUp size={20} />, label: "Performance", path: "/performance", verified: false },
-    { icon: <MessageSquare size={20} />, label: "Feedback", path: "/feedback", verified: false },
+    { icon: <MessageSquare size={20} />, label: "Feedback", path: "/reviews", verified: false },
   ];
 
   return (
@@ -76,7 +77,7 @@ const ProfileHome = () => {
           animate={{ scale: 1, opacity: 1 }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => handleNavigation('/profile/edit')}
+          onClick={() => handleNavigation('/edit-profile')}
           className="relative cursor-pointer group"
         >
           {/* Changed: Gradient to Blue/Cyan, Shadow to Blue */}
@@ -151,7 +152,7 @@ const ProfileHome = () => {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 1.1 }}
-          onClick={() => handleNavigation('/auth/logout')}
+          onClick={() => handleNavigation('/login')}
           // Changed: Dark mode BG to #1a2233/40
           className="w-full flex items-center justify-between p-5 bg-red-50 dark:bg-[#1a2233]/40 rounded-3xl mt-6 border border-red-200 dark:border-red-900/30 text-red-500 active:scale-95 transition-transform"
         >

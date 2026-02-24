@@ -50,16 +50,19 @@ const ScheduleForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-[#0f0f10] text-gray-900 dark:text-white font-sans pb-32 transition-colors duration-300">
+    // Changed: Background to Deep Slate
+    <div className="min-h-screen bg-gray-50 dark:bg-[#0b0f1a] text-gray-900 dark:text-white font-sans pb-32 transition-colors duration-300">
 
       {/* --- HEADER --- */}
-      <header className="sticky top-0 z-20 bg-gray-50/90 dark:bg-[#0f0f10]/90 backdrop-blur-md p-4 flex items-center justify-between border-b border-gray-200 dark:border-gray-800">
+      {/* Changed: BG to Deep Slate/90, Border to white/5 */}
+      <header className="sticky top-0 z-20 bg-gray-50/90 dark:bg-[#0b0f1a]/90 backdrop-blur-md p-4 flex items-center justify-between border-b border-gray-200 dark:border-white/5">
         <div className="flex items-center gap-4">
 
           {/* BACK BUTTON WORKING */}
           <button 
             onClick={() => navigate(-1)}
-            className="p-2 bg-white dark:bg-[#1a1a1c] rounded-full text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-800"
+            // Changed: BG to Navy, Border to white/10
+            className="p-2 bg-white dark:bg-[#1a2233] rounded-full text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10"
           >
             <ChevronLeft size={20} />
           </button>
@@ -72,7 +75,8 @@ const ScheduleForm = () => {
             setFormData({ topic:'', date:'', time:'', duration:'60', thumbnail:null })
             setPreview(null)
           }}
-          className="text-purple-600 dark:text-purple-400 font-bold text-sm px-2"
+          // Changed: Text to Blue/Cyan
+          className="text-[#2F80FF] dark:text-[#56CCF2] font-bold text-sm px-2"
         >
           Reset
         </button>
@@ -82,13 +86,15 @@ const ScheduleForm = () => {
 
         {/* --- TOPIC INPUT --- */}
         <div className="space-y-2">
+          {/* Changed: Icon color to Blue */}
           <label className="text-xs font-bold text-gray-500 uppercase tracking-widest flex items-center gap-2">
-            <Type size={14} className="text-purple-500" /> Class Topic
+            <Type size={14} className="text-[#2F80FF]" /> Class Topic
           </label>
           <input 
             type="text" 
             placeholder="e.g. Introduction to Quantum Physics"
-            className="w-full bg-white dark:bg-[#1a1a1c] border border-gray-200 dark:border-gray-800 rounded-2xl p-4 focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all placeholder:text-gray-500"
+            // Changed: BG to Navy, Border to white/10, Ring to Blue
+            className="w-full bg-white dark:bg-[#1a2233] border border-gray-200 dark:border-white/10 rounded-2xl p-4 focus:outline-none focus:ring-2 focus:ring-[#2F80FF]/50 transition-all placeholder:text-gray-500"
             onChange={(e) => setFormData({...formData, topic: e.target.value})}
           />
         </div>
@@ -97,11 +103,13 @@ const ScheduleForm = () => {
         <div className="grid grid-cols-2 gap-4">
           <input 
             type="date" 
-            className="w-full bg-white dark:bg-[#1a1a1c] border border-gray-200 dark:border-gray-800 rounded-2xl p-4 text-sm appearance-none"
+            // Changed: BG to Navy, Border to white/10
+            className="w-full bg-white dark:bg-[#1a2233] border border-gray-200 dark:border-white/10 rounded-2xl p-4 text-sm appearance-none"
           />
           <input 
             type="time" 
-            className="w-full bg-white dark:bg-[#1a1a1c] border border-gray-200 dark:border-gray-800 rounded-2xl p-4 text-sm"
+            // Changed: BG to Navy, Border to white/10
+            className="w-full bg-white dark:bg-[#1a2233] border border-gray-200 dark:border-white/10 rounded-2xl p-4 text-sm"
           />
         </div>
 
@@ -111,10 +119,11 @@ const ScheduleForm = () => {
             <button
               key={mins}
               onClick={()=>setFormData({...formData,duration:mins})}
+              // Changed: Selected State to Blue Theme, Unselected to Navy
               className={`flex-1 py-3 rounded-xl text-xs font-bold transition-all border ${
                 formData.duration===mins
-                ? 'bg-purple-600 border-purple-500 text-white shadow-lg shadow-purple-900/30'
-                : 'bg-white dark:bg-[#1a1a1c] border-gray-200 dark:border-gray-800 text-gray-500'
+                ? 'bg-[#2F80FF] border-blue-500 text-white shadow-lg shadow-blue-900/30'
+                : 'bg-white dark:bg-[#1a2233] border-gray-200 dark:border-white/10 text-gray-500'
               }`}
             >
               {mins}m
@@ -124,12 +133,13 @@ const ScheduleForm = () => {
 
         {/* --- THUMBNAIL --- */}
         {!preview ? (
-          <label className="flex flex-col items-center justify-center w-full h-40 bg-white dark:bg-[#1a1a1c] border-2 border-dashed border-gray-200 dark:border-gray-800 rounded-3xl cursor-pointer hover:border-purple-500/50 transition-all group">
-            <Upload size={24} className="text-gray-400 group-hover:text-purple-400" />
+          // Changed: BG to Navy, Border to white/10, Hover to Blue
+          <label className="flex flex-col items-center justify-center w-full h-40 bg-white dark:bg-[#1a2233] border-2 border-dashed border-gray-200 dark:border-white/10 rounded-3xl cursor-pointer hover:border-[#2F80FF]/50 transition-all group">
+            <Upload size={24} className="text-gray-400 group-hover:text-[#2F80FF]" />
             <input type="file" className="hidden" onChange={handleImageChange} />
           </label>
         ) : (
-          <div className="relative w-full h-40 rounded-3xl overflow-hidden border border-gray-200 dark:border-gray-800">
+          <div className="relative w-full h-40 rounded-3xl overflow-hidden border border-gray-200 dark:border-white/10">
             <img src={preview} className="w-full h-full object-cover"/>
             <button 
               onClick={()=>setPreview(null)}
@@ -142,12 +152,14 @@ const ScheduleForm = () => {
       </div>
 
       {/* --- BUTTON --- */}
-      <div className="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-gray-50 dark:from-[#0f0f10] via-transparent">
+      {/* Changed: Gradient from Deep Slate */}
+      <div className="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-gray-50 dark:from-[#0b0f1a] via-transparent">
         
         <button
           onClick={handleCreate}
           disabled={loading}
-          className="w-full bg-purple-600 text-white py-4 rounded-2xl font-bold text-sm shadow-xl shadow-purple-900/40 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+          // Changed: BG to Blue, Shadow to Blue
+          className="w-full bg-[#2F80FF] text-white py-4 rounded-2xl font-bold text-sm shadow-xl shadow-blue-900/40 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
         >
           {loading ? (
             <>

@@ -55,20 +55,19 @@ const Appbar = ({ theme, toggleTheme }) => {
     <motion.header 
       initial={{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      // Changed: Background color to match Wallet header
-      className="flex justify-between items-center p-6 pb-2 sticky top-0 z-40 bg-white/80 dark:bg-[#0b0f1a]/80 backdrop-blur-md border-b border-gray-100 dark:border-transparent transition-colors duration-300"
+      // UPDATED: Darker background, removing heavy borders for a cleaner look
+      className="flex justify-between items-center p-6 pb-2 sticky top-0 z-40 bg-white/90 dark:bg-[#0f0f10]/90 backdrop-blur-xl border-b border-gray-100 dark:border-transparent transition-colors duration-300"
     >
       <div className="flex items-center gap-3">
         {/* --- 1. PROFILE CLICKABLE --- */}
         <motion.div 
           whileHover={{ scale: 1.05 }}
           onClick={() => navigate('/profile')}
-          // Changed: Gradient to match Wallet (Blue/Cyan)
-          className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#2F80FF] to-[#56CCF2] p-[2px] cursor-pointer"
+          // UPDATED: Purple Gradient border
+          className="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-600 to-[#1a1a1c] p-[2px] cursor-pointer"
         >
-          {/* Changed: Inner circle bg */}
-          <div className="w-full h-full rounded-full bg-white dark:bg-[#1a2233] flex items-center justify-center">
-            <span className="text-sm font-bold text-gray-800 dark:text-white">PR</span>
+          <div className="w-full h-full rounded-full bg-white dark:bg-[#1a1a1c] flex items-center justify-center">
+            <span className="text-sm font-bold text-gray-800 dark:text-gray-200">PR</span>
           </div>
         </motion.div>
         <div onClick={() => navigate('/profile')} className="cursor-pointer">
@@ -82,8 +81,8 @@ const Appbar = ({ theme, toggleTheme }) => {
         <motion.button 
           whileTap={{ scale: 0.9, rotate: 15 }}
           onClick={toggleTheme}
-          // Changed: Button bg color
-          className="p-2 bg-gray-100 dark:bg-[#1a2233] rounded-full border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:text-[#2F80FF] transition-colors"
+          // UPDATED: Dark button style
+          className="p-2 bg-gray-100 dark:bg-[#1a1a1c] rounded-full border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:text-purple-500 transition-colors"
         >
           {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
         </motion.button>
@@ -92,11 +91,11 @@ const Appbar = ({ theme, toggleTheme }) => {
         <motion.div 
           whileTap={{ scale: 0.9 }}
           onClick={() => navigate('/notifications')}
-          // Changed: Button bg color
-          className="relative p-2 bg-gray-100 dark:bg-[#1a2233] rounded-full border border-gray-200 dark:border-white/10 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
+          // UPDATED: Dark button style
+          className="relative p-2 bg-gray-100 dark:bg-[#1a1a1c] rounded-full border border-gray-200 dark:border-gray-800 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
         >
           <Bell size={20} className="text-gray-500 dark:text-gray-400" />
-          <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-[#1a2233]"></span>
+          <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-[#1a1a1c]"></span>
         </motion.div>
       </div>
     </motion.header>
@@ -109,8 +108,8 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   return (
-    // Changed: Main Background to #0b0f1a
-    <div className="min-h-screen bg-gray-50 dark:bg-[#0b0f1a] text-gray-900 dark:text-white font-sans pb-32 transition-colors duration-300">
+    // UPDATED: Background changed to deep matte black/charcoal (#0f0f10)
+    <div className="min-h-screen bg-gray-50 dark:bg-[#0f0f10] text-gray-900 dark:text-white font-sans pb-32 transition-colors duration-300">
       
       <Appbar theme={theme} toggleTheme={toggleTheme} />
 
@@ -125,43 +124,48 @@ const Dashboard = () => {
           {/* --- 3. EARNINGS SUMMARY CLICKABLE --- */}
           <div 
             onClick={() => navigate('/earnings')}
-            // Changed: Card BG to #1a2233, Border to Blue/Emerald
-            className="bg-white dark:bg-[#1a2233] border border-blue-200 dark:border-white/5 rounded-3xl p-6 relative overflow-hidden shadow-lg dark:shadow-none transition-all duration-300 cursor-pointer hover:scale-[1.01] active:scale-[0.99]"
+            // UPDATED: 
+            // 1. bg-[#131315] (Dark card)
+            // 2. border-purple-500/30 (Subtle purple stroke)
+            // 3. shadow-[0_0_30px_...] (Purple glow effect)
+            className="bg-white dark:bg-[#131315] border border-gray-200 dark:border-purple-500/30 rounded-3xl p-6 relative overflow-hidden shadow-xl dark:shadow-[0_0_30px_rgba(124,58,237,0.15)] transition-all duration-300 cursor-pointer hover:scale-[1.01] active:scale-[0.99]"
           >
-            {/* Animated Blob - Changed to Blue */}
+            {/* Animated Blob */}
             <motion.div 
-              animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+              animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
               transition={{ repeat: Infinity, duration: 5 }}
-              className="absolute top-0 right-0 w-32 h-32 bg-blue-200 dark:bg-blue-600/10 blur-[50px]" 
+              className="absolute top-0 right-0 w-32 h-32 bg-purple-200 dark:bg-purple-600/10 blur-[50px]" 
             />
             
             <div className="flex justify-between items-start mb-4 relative z-10">
               <div>
                 <p className="text-gray-500 dark:text-gray-400 text-sm font-medium">Earnings Summary</p>
-                {/* Changed: Text color to Emerald */}
-                <h2 className="text-4xl font-bold text-gray-900 dark:text-emerald-400 mt-1 tracking-tight">₹45,200</h2>
+                {/* UPDATED: Neon Green text (#4ade80) for the amount */}
+                <h2 className="text-4xl font-black text-gray-900 dark:text-[#4ade80] mt-2 tracking-tight">₹45,200</h2>
                 <p className="text-gray-400 dark:text-gray-500 text-xs mt-1 font-medium italic">Total This Month</p>
               </div>
               <motion.div 
                 whileHover={{ rotate: 45 }}
-                // Changed: BG to Emerald/Blue tint
-                className="bg-emerald-100 dark:bg-emerald-500/20 p-2 rounded-lg"
+                // UPDATED: Dark green pill background
+                className="bg-emerald-100 dark:bg-[#4ade80]/10 p-2 rounded-lg"
               >
-                <ArrowUpRight size={20} className="text-emerald-600 dark:text-emerald-400" />
+                <ArrowUpRight size={20} className="text-emerald-600 dark:text-[#4ade80]" />
               </motion.div>
             </div>
 
-            <div className="flex gap-8 border-t border-gray-100 dark:border-white/5 pt-4 relative z-10">
+            {/* UPDATED: Separator line color */}
+            <div className="flex gap-8 border-t border-gray-100 dark:border-gray-800 pt-4 relative z-10">
               <div>
-                <p className="text-xs text-gray-400 dark:text-gray-500 uppercase tracking-tighter mb-1">Base Pay</p>
+                <p className="text-[10px] text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-1 font-bold">Base Pay</p>
                 <p className="text-sm font-bold text-gray-700 dark:text-gray-200 font-mono">₹35,000</p>
               </div>
               <div>
-                <p className="text-xs text-gray-400 dark:text-gray-500 uppercase tracking-tighter mb-1 font-mono">Bonus</p>
-                <p className="text-sm font-bold text-emerald-600 dark:text-emerald-400">₹10,200</p>
+                <p className="text-[10px] text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-1 font-bold">Bonus</p>
+                {/* UPDATED: Green accent */}
+                <p className="text-sm font-bold text-emerald-600 dark:text-[#4ade80] font-mono">₹10,200</p>
               </div>
               <div>
-                <p className="text-xs text-gray-400 dark:text-gray-500 uppercase tracking-tighter mb-1">Rating</p>
+                <p className="text-[10px] text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-1 font-bold">Rating</p>
                 <div className="flex items-center gap-1">
                   <Star size={14} className="fill-yellow-500 text-yellow-500" />
                   <span className="text-sm font-bold text-gray-700 dark:text-white">4.8</span>
@@ -173,25 +177,28 @@ const Dashboard = () => {
 
         {/* --- MIDDLE: QUICK ACTIONS --- */}
         <section className="px-6 space-y-3">
-          <motion.h3 variants={itemVariants} className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">Quick Actions</motion.h3>
+          <motion.h3 variants={itemVariants} className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">Quick Actions</motion.h3>
           <div className="grid grid-cols-2 gap-3">
             
             {/* --- 4. GO LIVE NOW CLICKABLE --- */}
-            {/* Changed: Purple theme to Blue theme */}
             <QuickActionButton 
               onClick={() => navigate('/live')}
-              icon={<PlayCircle size={24} className="text-[#2F80FF] dark:text-[#56CCF2]" />}
-              color="bg-blue-100 dark:bg-[#2F80FF]/10"
+              icon={<PlayCircle size={24} className="text-purple-600 dark:text-[#4ade80]" />}
+              // UPDATED: Dark card bg
+              cardBg="bg-white dark:bg-[#1a1a1c]"
+              // UPDATED: Green tint
+              color="bg-purple-100 dark:bg-[#4ade80]/10"
               title="Go Live Now"
               subtitle="Start instant session"
             />
             
             {/* --- 5. UPLOAD VIDEO CLICKABLE --- */}
-            {/* Changed: Blue theme to Emerald theme to vary colors */}
             <QuickActionButton 
               onClick={() => navigate('/scheduleclaas')}
-              icon={<UploadCloud size={24} className="text-emerald-600 dark:text-emerald-400" />}
-              color="bg-emerald-100 dark:bg-emerald-500/10"
+              icon={<UploadCloud size={24} className="text-blue-500 dark:text-blue-400" />}
+              // UPDATED: Dark card bg
+              cardBg="bg-white dark:bg-[#1a1a1c]"
+              color="bg-blue-100 dark:bg-blue-500/10"
               title="Upload Video"
               subtitle="Add recorded class"
             />
@@ -201,14 +208,13 @@ const Dashboard = () => {
         {/* --- BOTTOM: TODAY'S SCHEDULE --- */}
         <section className="px-6 mt-8 space-y-4">
           <div className="flex justify-between items-center">
-            <motion.h3 variants={itemVariants} className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">Today's Schedule</motion.h3>
+            <motion.h3 variants={itemVariants} className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">Today's Schedule</motion.h3>
             
             {/* --- 6. VIEW ALL CLICKABLE --- */}
             <motion.button 
               onClick={() => navigate('/schedule')}
               whileTap={{ scale: 0.95 }} 
-              // Changed: Text color to Blue
-              className="text-xs text-[#2F80FF] dark:text-[#56CCF2] font-bold hover:underline"
+              className="text-xs text-purple-600 dark:text-[#4ade80] font-bold hover:underline"
             >
               View All
             </motion.button>
@@ -222,7 +228,6 @@ const Dashboard = () => {
               className="absolute left-[11px] top-2 bottom-2 w-[2px] bg-gray-200 dark:bg-gray-800"
             ></motion.div>
 
-            {/* Changed: Passing theme color props implicitly via style changes in ScheduleItem */}
             <ScheduleItem 
               time="9:00 AM" 
               title="Algebra Class (Live)" 
@@ -256,16 +261,16 @@ const Dashboard = () => {
 
 // --- HELPER COMPONENTS ---
 
-const QuickActionButton = ({ icon, color, title, subtitle, onClick }) => (
+const QuickActionButton = ({ icon, color, title, subtitle, onClick, cardBg }) => (
   <motion.button 
     onClick={onClick}
     variants={itemVariants}
     whileHover={{ scale: 1.02 }}
     whileTap={{ scale: 0.95 }}
-    // Changed: Card BG and Border
-    className="bg-white dark:bg-[#1a2233] border border-gray-200 dark:border-white/10 p-4 rounded-2xl flex flex-col items-start gap-3 transition-colors shadow-sm w-full"
+    // UPDATED: Dark background #1a1a1c, very subtle border
+    className={`${cardBg} border border-gray-200 dark:border-gray-800 p-4 rounded-2xl flex flex-col items-start gap-3 transition-colors shadow-sm w-full group`}
   >
-    <div className={`w-10 h-10 ${color} rounded-xl flex items-center justify-center transition-colors`}>
+    <div className={`w-10 h-10 ${color} rounded-xl flex items-center justify-center transition-colors group-hover:scale-110 duration-300`}>
       {icon}
     </div>
     <div className="text-left">
@@ -279,22 +284,21 @@ const ScheduleItem = ({ time, title, status, isNext }) => (
   <motion.div variants={itemVariants} className="flex gap-4 pb-6 group relative">
     <div className="relative z-10 mt-1">
       {status === 'completed' ? (
-        // Changed: Emerald color checks
-        <CheckCircle2 size={22} className="text-emerald-500 dark:text-emerald-400 bg-gray-50 dark:bg-[#0b0f1a] rounded-full" />
+        // UPDATED: Neon green checkmarks
+        <CheckCircle2 size={22} className="text-emerald-500 dark:text-[#4ade80] bg-gray-50 dark:bg-[#0f0f10] rounded-full" />
       ) : (
-        // Changed: Border colors and dot colors (Purple -> Blue)
-        <div className={`w-5 h-5 rounded-full border-2 transition-colors ${isNext ? 'border-[#2F80FF] bg-white dark:bg-[#0b0f1a]' : 'border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#0b0f1a]'}`}></div>
+        // UPDATED: Gray borders for upcoming
+        <div className={`w-5 h-5 rounded-full border-2 transition-colors ${isNext ? 'border-purple-500 dark:border-[#4ade80] bg-white dark:bg-[#0f0f10]' : 'border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#0f0f10]'}`}></div>
       )}
     </div>
     <motion.div 
       whileHover={{ x: 5 }}
-      // Changed: Active item BG, border and Ring color (Purple -> Blue)
-      className={`flex-1 p-4 rounded-2xl transition-all cursor-default ${isNext ? 'bg-white dark:bg-[#1a2233] border border-gray-200 dark:border-white/10 shadow-lg ring-1 ring-[#2F80FF]/30' : 'bg-transparent border border-transparent hover:bg-white/50 dark:hover:bg-[#1a2233]/50'}`}
+      // UPDATED: Active card gets dark bg and green subtle border
+      className={`flex-1 p-4 rounded-2xl transition-all cursor-default ${isNext ? 'bg-white dark:bg-[#1a1a1c] border border-gray-200 dark:border-gray-800 shadow-lg ring-1 ring-purple-500/20 dark:ring-[#4ade80]/20' : 'bg-transparent border border-transparent hover:bg-white/50 dark:hover:bg-[#1a1a1c]/50'}`}
     >
       <div className="flex justify-between items-start">
         <div>
-          {/* Changed: Time text color (Purple -> Blue) */}
-          <p className={`text-xs font-bold uppercase tracking-tight ${status === 'completed' ? 'text-gray-400 dark:text-gray-500' : 'text-[#2F80FF] dark:text-[#56CCF2]'}`}>
+          <p className={`text-xs font-bold uppercase tracking-tight ${status === 'completed' ? 'text-gray-400 dark:text-gray-600' : 'text-purple-600 dark:text-[#4ade80]'}`}>
             {time}
           </p>
           <h4 className={`text-sm font-semibold mt-1 ${status === 'completed' ? 'text-gray-400 dark:text-gray-500 line-through' : 'text-gray-800 dark:text-gray-200'}`}>
