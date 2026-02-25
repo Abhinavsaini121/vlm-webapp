@@ -17,12 +17,12 @@ const Login = () => {
         const mobileRegex = /^[6-9]\d{9}$/;
         
         if (!mobileRegex.test(mobile)) {
-            setError("Bhai, sahi 10-digit mobile number dalo!");
+            setError("Please enter valid Number!");
             return;
         }
 
         if (password.length < 4) {
-            setError("Password thoda bada rakho (min 4 chars)");
+            setError("Create strong password");
             return;
         }
 
