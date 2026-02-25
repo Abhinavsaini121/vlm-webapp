@@ -1,96 +1,191 @@
 import React, { useEffect, useState } from 'react';
-import { Home, Wallet, Star, User, Film, Swords, ArrowRightLeft } from 'lucide-react';
+import { 
+  Home, Star, User, Film, Swords, 
+  ArrowRightLeft, Plus, Zap, MonitorPlay, Radio 
+} from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const FloatingNav = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [userRole, setUserRole] = useState('Student');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    // 1. LocalStorage se role fetch karo jo Login page ne save kiya tha
+    // Fetch role from LocalStorage
     const role = localStorage.getItem('userRole');
     if (role) {
       setUserRole(role);
     }
+    // FOR TESTING: Force teacher mode to see the new UI
+    // setUserRole('Teacher'); 
   }, []);
 
-  // 2. Roles ke hisab se Nav Items ki configuration
+  const handleAction = (route) => {
+    setIsMenuOpen(false);
+    navigate(route);
+  };
+
+  // --- NAVIGATION CONFIGURATIONS ---
   const navConfigs = {
     Student: [
-      { id: 'Home', label: 'Home', icon: Home, route: '/student-dashboard' },
-      { id: 'Battle', label: 'LIVE BATTLE', icon: Swords, route: '/livebattle' },
-      { id: 'Transaction', label: 'Transaction', icon: ArrowRightLeft, route: '/transactions' },
-      { id: 'Shorts', label: 'Shorts', icon: Film, route: '/shorts' },
-      { id: 'Profile', label: 'Profile', icon: User, route: '/StudentProfile' },
+      { id: 'Home', icon: Home, route: '/student-dashboard' },
+      { id: 'Battle', icon: Swords, route: '/livebattle' },
+      { id: 'Transaction', icon: ArrowRightLeft, route: '/transactions' },
+      { id: 'Shorts', icon: Film, route: '/shorts' },
+      { id: 'Profile', icon: User, route: '/StudentProfile' },
     ],
     Teacher: [
-      { id: 'Home', label: 'Home', icon: Home, route: '/teacher-dashboard' },
-      { id: 'Shorts', label: 'Shorts', icon: Film, route: '/shorts' },
-      { id: 'Earnings', label: 'Earnings', icon: Wallet, route: '/earnings' },
-      { id: 'Reviews', label: 'Reviews', icon: Star, route: '/reviews' },
-      { id: 'Profile', label: 'Profile', icon: User, route: '/TeacherProfile' },
-    ],
-    // Agar Parent ho to fallback (optional)
-    Parent: [
-        { id: 'Home', label: 'Home', icon: Home, route: '/parent-dashboard' },
-        { id: 'Profile', label: 'Profile', icon: User, route: '/profile' },
+      { id: 'Home', icon: Home, route: '/teacher-dashboard' },
+      { id: 'Shorts', icon: Film, route: '/shorts' },
+      { id: 'Create', icon: Plus, isAction: true }, // The unique + button
+      { id: 'Reviews', icon: Star, route: '/reviews' },
+      { id: 'Profile', icon: User, route: '/TeacherProfile' },
     ]
   };
 
-  // 3. Current Role ke items select karo (Default 'Student' agar role na mile)
   const navItems = navConfigs[userRole] || navConfigs['Student'];
+  const isTeacher = userRole === 'Teacher';
+
+  // Split items for the Teacher's split-dock layout
+  const leftItems = isTeacher ? navItems.slice(0, 2) : [];
+  const rightItems = isTeacher ? navItems.slice(3, 5) : [];
+
+  // --- SEMI-CIRCLE ANIMATION OPTIONS ---
+  // Calculates coordinates for the semi-circle layout
+  const createOptions = [
+    { id: 'short', label: 'Create Short', icon: Zap, x: -65, y: -60 },    // Top-Left
+    { id: 'long', label: 'Long Video', icon: MonitorPlay, x: 0, y: -85 }, // Top-Center
+    { id: 'live', label: 'Go Live', icon: Radio, x: 65, y: -60 },         // Top-Right
+  ];
 
   return (
-    <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 w-auto">
-      <nav className="bg-white/90 dark:bg-[#1a1a1c]/90 backdrop-blur-lg p-2 rounded-full shadow-2xl dark:shadow-black/50 border border-gray-200 dark:border-gray-800 flex items-center gap-1 sm:gap-2">
+    <>
+      {/* --- BACKDROP OVERLAY --- */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsMenuOpen(false)}
+            className="fixed inset-0 bg-black/10 dark:bg-[#0f0f12] backdrop-blur-sm z-40 transition-colors duration-300"
+          />
+        )}
+      </AnimatePresence>
+
+      <div className="fixed bottom-6 w-full max-w-sm left-1/2 transform -translate-x-1/2 z-50 px-4">
         
-        {navItems.map((item) => {
-          const isActive = location.pathname === item.route;
-          const Icon = item.icon;
+        {/* ========================================= */}
+        {/* TEACHER LAYOUT: CURVED SCOOP & PLUS ICON    */}
+        {/* ========================================= */}
+        {isTeacher ? (
+          <div className="relative w-full h-[70px] drop-shadow-[0_10px_20px_rgba(0,0,0,0.1)] dark:drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)] flex items-center justify-between z-50">
+            
+            {/* --- Left Side of Dock --- */}
+            <div className="flex-1 bg-white dark:bg-[#252528] rounded-l-[2rem] h-full flex items-center justify-evenly transition-colors duration-300">
+              {leftItems.map((item) => (
+                <NavItem key={item.id} item={item} location={location} navigate={navigate} />
+              ))}
+            </div>
+            
+            {/* --- Center Cutout (SVG Scoop) --- */}
+            <div className="w-[80px] h-full relative -mx-[1px] text-white dark:text-[#252528] transition-colors duration-300">
+              <svg viewBox="0 0 100 70" className="w-full h-full text-current" preserveAspectRatio="none">
+                <path d="M0 0 C 15 0 20 40 50 40 C 80 40 85 0 100 0 L 100 70 L 0 70 Z" fill="currentColor" />
+              </svg>
+            </div>
 
-          return (
-            <button
-              key={item.id}
-              onClick={() => navigate(item.route)}
-              className="relative flex items-center px-4 py-3 cursor-pointer outline-none select-none"
-            >
-              {/* --- ACTIVE BACKGROUND ANIMATION --- */}
-              {isActive && (
-                <motion.div
-                  layoutId="active-pill"
-                  className="absolute inset-0 bg-[#E5DFF7] dark:bg-purple-600/20 rounded-full"
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                />
-              )}
+            {/* --- Right Side of Dock --- */}
+            <div className="flex-1 bg-white dark:bg-[#252528] rounded-r-[2rem] h-full flex items-center justify-evenly transition-colors duration-300">
+              {rightItems.map((item) => (
+                <NavItem key={item.id} item={item} location={location} navigate={navigate} />
+              ))}
+            </div>
 
-              {/* --- ICON --- */}
-              <span className={`relative z-10 transition-colors duration-200 ${
-                isActive ? 'text-[#5B37B7] dark:text-purple-400' : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-200'
-              }`}>
-                <Icon size={22} strokeWidth={isActive ? 2.5 : 2} />
-              </span>
-
-              {/* --- TEXT LABEL ANIMATION --- */}
-              <div className="relative z-10 overflow-hidden flex">
-                {isActive && (
-                  <motion.span
-                    initial={{ width: 0, opacity: 0, marginLeft: 0 }}
-                    animate={{ width: "auto", opacity: 1, marginLeft: 8 }}
-                    exit={{ width: 0, opacity: 0, marginLeft: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="font-bold text-sm whitespace-nowrap text-[#5B37B7] dark:text-purple-300"
+            {/* --- FLOATING PLUS BUTTON --- */}
+            <div className="absolute left-1/2 -translate-x-1/2 top-[-24px] flex flex-col items-center justify-center">
+              
+              {/* Semi-Circle Pop-out Items */}
+              <AnimatePresence>
+                {isMenuOpen && createOptions.map((option, index) => (
+                  <motion.button
+                    key={option.id}
+                    initial={{ opacity: 0, scale: 0.5, x: 0, y: 0 }}
+                    animate={{ opacity: 1, scale: 1, x: option.x, y: option.y }}
+                    exit={{ opacity: 0, scale: 0.5, x: 0, y: 0 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 20, delay: index * 0.05 }}
+                    onClick={() => handleAction(`/${option.id}`)}
+                    className="absolute z-[-1] flex flex-col items-center gap-2 group"
                   >
-                    {item.label}
-                  </motion.span>
-                )}
-              </div>
-            </button>
-          );
-        })}
-      </nav>
-    </div>
+                    <div className="w-12 h-12 bg-white dark:bg-[#333336] rounded-full flex items-center justify-center shadow-lg shadow-black/20 text-[#7C3AED] dark:text-[#a78bfa] group-hover:scale-110 transition-transform">
+                      <option.icon size={22} strokeWidth={2.5} />
+                    </div>
+                    <span className="absolute -bottom-6 w-max text-[10px] font-black tracking-widest uppercase text-white drop-shadow-md">
+                      {option.label}
+                    </span>
+                  </motion.button>
+                ))}
+              </AnimatePresence>
+
+              {/* Main Action Button */}
+              <motion.button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                animate={{ rotate: isMenuOpen ? 135 : 0 }}
+                transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                className={`w-14 h-14 rounded-full flex items-center justify-center shadow-[0_8px_20px_rgba(124,58,237,0.4)] transition-all z-10 ${
+                  isMenuOpen 
+                    ? 'bg-red-500 shadow-red-500/40 text-white' 
+                    : 'bg-[#7C3AED] hover:bg-[#6d28d9] text-white'
+                }`}
+              >
+                <Plus size={32} strokeWidth={2.5} />
+              </motion.button>
+            </div>
+          </div>
+        ) : (
+          
+          /* ========================================= */
+          /* STUDENT LAYOUT: STANDARD FLAT DOCK        */
+          /* ========================================= */
+          <div className="w-full h-[70px] bg-white dark:bg-[#252528] rounded-[2rem] drop-shadow-2xl flex items-center justify-evenly px-4 transition-colors duration-300 relative z-50">
+             {navItems.map((item) => (
+                <NavItem key={item.id} item={item} location={location} navigate={navigate} />
+             ))}
+          </div>
+        )}
+
+      </div>
+    </>
+  );
+};
+
+const NavItem = ({ item, location, navigate }) => {
+  const isActive = location.pathname === item.route;
+  const Icon = item.icon;
+
+  return (
+    <button
+      onClick={() => navigate(item.route)}
+      className="relative p-3 rounded-full flex items-center justify-center transition-all group"
+    >
+      <Icon 
+        size={22} 
+        strokeWidth={isActive ? 2.5 : 2} 
+        className={`transition-colors duration-300 ${
+          isActive 
+            ? 'text-[#7C3AED] dark:text-[#a78bfa]' 
+            : 'text-gray-400 dark:text-gray-500 group-hover:text-gray-600 dark:group-hover:text-gray-300'
+        }`} 
+      />
+      {isActive && (
+        <motion.div 
+          layoutId="nav-indicator"
+          className="absolute -bottom-2 w-1 h-1 bg-[#7C3AED] dark:bg-[#a78bfa] rounded-full"
+        />
+      )}
+    </button>
   );
 };
 
