@@ -32,6 +32,8 @@ import ScheduleForm from '../pages/Home/Teacher/Home/class/ScheduleClass';
 import WalletHome from '../pages/Home/Teacher/wallet/WalletHome';
 import HelpSupport from '../pages/Home/Teacher/profile/HelpSupport';
 import TeacherSettings from '../pages/Home/Teacher/profile/TeacherSettings';
+import VideoUploadManager from '../pages/Home/Teacher/Home/upload/VideoUploadManager';
+import VideoDetailsForm from '../pages/Home/Teacher/Home/upload/VideoDetailsForm';
 
 const AppRoutes = () => {
   return (
@@ -60,6 +62,8 @@ const AppRoutes = () => {
 
 
       <Route path="/teacher-dashboard" element={<TeacherHome />} />
+      <Route path="/upload-file" element={<VideoUploadManager />} />
+      <Route path="/upload" element={<VideoUploadManager />} />
       <Route path="/notifications" element={<Notifications />} />
       <Route path="/scheduleclaas" element={<ScheduleForm />} />
       <Route path="/live" element={<LiveClassRoom />} />

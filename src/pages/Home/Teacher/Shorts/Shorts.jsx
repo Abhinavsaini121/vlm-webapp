@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
 // --- IMPORT YOUR VIDEO HERE ---
-import shortVideo from '../../../../assets/short.webm'; 
+import shortVideo from '../../../../assets/short2.webm'; 
 
 const videos = [
   {

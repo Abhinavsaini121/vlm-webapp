@@ -182,7 +182,7 @@ const Dashboard = () => {
             />
             
             <QuickActionButton 
-              onClick={() => navigate('/scheduleclaas')}
+              onClick={() => navigate('/upload-file')}
               icon={<UploadCloud size={24} className="text-emerald-600 dark:text-emerald-400" />}
               color="bg-emerald-50 dark:bg-emerald-500/10"
               title="Upload Video"

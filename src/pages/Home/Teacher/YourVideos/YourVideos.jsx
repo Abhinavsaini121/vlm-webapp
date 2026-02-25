@@ -276,7 +276,7 @@ const YourVideos = () => {
                   hidden: { opacity: 0, scale: 0.8, y: 10 },
                   visible: { opacity: 1, scale: 1, y: 0 },
                 }}
-                onClick={() => handleFabAction('/create/video')}
+                onClick={() => handleFabAction('/upload')}
                 className="flex items-center gap-4 cursor-pointer group"
               >
                 <span className="text-white text-[11px] font-black tracking-widest uppercase bg-gray-900/80 px-3 py-1.5 rounded-lg backdrop-blur-md">
