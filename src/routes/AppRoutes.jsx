@@ -31,9 +31,13 @@ import FeedbackReviews from '../pages/Home/Teacher/reviews/Reviews';
 import ScheduleForm from '../pages/Home/Teacher/Home/class/ScheduleClass';
 import WalletHome from '../pages/Home/Teacher/wallet/WalletHome';
 import HelpSupport from '../pages/Home/Teacher/profile/HelpSupport';
-import TeacherSettings from '../pages/Home/Teacher/profile/TeacherSettings';
+import TeacherSettings from '../pages/Home/Teacher/profile/settings/TeacherSettings';
 import VideoUploadManager from '../pages/Home/Teacher/Home/upload/VideoUploadManager';
 import VideoDetailsForm from '../pages/Home/Teacher/Home/upload/VideoDetailsForm';
+import ApplicationStatus from '../pages/Home/Teacher/profile/settings/ApplicationStatus';
+import PrivacyPolicy from '../pages/Home/Teacher/profile/settings/PrivacyPolicy';
+import TermsOfService from '../pages/Home/Teacher/profile/settings/TermsOfService';
+import AppLanguage from '../pages/Home/Teacher/profile/settings/AppLanguage';
 
 const AppRoutes = () => {
   return (
@@ -71,6 +75,10 @@ const AppRoutes = () => {
       <Route path="/edit-profile" element={<EditProfile />} />
       <Route path="/support" element={<HelpSupport />} />
       <Route path="/setting" element={<TeacherSettings />} />
+      <Route path="/status" element={<ApplicationStatus />} />
+      <Route path="/privacy" element={<PrivacyPolicy />} />
+      <Route path="/terms" element={<TermsOfService />} />
+      <Route path="/language" element={<AppLanguage />} />
       <Route path="/earnings" element={<WalletHome />} />
       <Route path="/shorts" element={<ShortsPage />} />
       <Route path="/reviews" element={<FeedbackReviews />} />

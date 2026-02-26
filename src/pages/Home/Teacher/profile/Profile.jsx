@@ -39,7 +39,7 @@ const ProfileHome = () => {
 
   const menuItems = [
     { icon: <Wallet size={20} />, label: "Wallet", path: "/earnings", verified: false },
-    { icon: <ShieldCheck size={20} className="text-emerald-500" />, label: "KYC & Documents", path: "/kyc", verified: true },
+    { icon: <ShieldCheck size={20} className="text-emerald-500" />, label: "KYC & Documents", path: "/status", verified: true },
     { icon: <VideoIcon size={20} />, label: "Your Videos", path: "/your-videos", verified: false },
     { icon: <LifeBuoy size={20} />, label: "Help & Support", path: "/support", verified: false },
     { icon: <TrendingUp size={20} />, label: "Performance", path: "/performance", verified: false },
@@ -63,7 +63,7 @@ const ProfileHome = () => {
         </button>
         <h1 className="text-lg font-black tracking-tight uppercase text-gray-800 dark:text-white">Teacher Profile</h1>
         <button 
-          onClick={() => handleNavigation('/settings')}
+          onClick={() => handleNavigation('/setting')}
           // Changed: Text color to Blue (#2F80FF)
           className="p-2.5 bg-white dark:bg-[#1a2233] rounded-xl text-[#2F80FF] dark:text-[#56CCF2] border border-gray-200 dark:border-white/10 shadow-sm hover:scale-105 transition-all"
         >

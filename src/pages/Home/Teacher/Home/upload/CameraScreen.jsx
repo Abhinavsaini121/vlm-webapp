@@ -7,13 +7,11 @@ const CameraScreen = ({ videoType, onClose, onOpenGallery, onRecordComplete }) =
   const mediaRecorderRef = useRef(null);
   const [isRecording, setIsRecording] = useState(false);
   const [recordedChunks, setRecordedChunks] = useState([]);
-  const [facingMode, setFacingMode] = useState('environment'); // 'user' (front) or 'environment' (back)
+  const [facingMode, setFacingMode] = useState('environment');
   const [timeElapsed, setTimeElapsed] = useState(0);
 
-  // Timer interval reference
   const timerRef = useRef(null);
 
-  // Start Camera Stream
   const startCamera = async () => {
     try {
       if (videoRef.current && videoRef.current.srcObject) {
