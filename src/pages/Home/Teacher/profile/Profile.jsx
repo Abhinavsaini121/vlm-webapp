@@ -87,7 +87,7 @@ const ProfileHome = () => {
             {/* Changed: Inner BG to #1a2233, Border to #0b0f1a */}
             <div className="w-full h-full rounded-full bg-white dark:bg-[#1a2233] overflow-hidden flex items-center justify-center border-4 border-white dark:border-[#0b0f1a] relative">
                {/* Image Placeholder */}
-               <span className="text-3xl font-black text-gray-800 dark:text-white">PS</span>
+               <span className="text-3xl font-black text-gray-800 dark:text-white">AS</span>
                
                {/* Hover Overlay Icon */}
                <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
