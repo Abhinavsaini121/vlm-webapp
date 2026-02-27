@@ -67,12 +67,12 @@ const Appbar = ({ theme, toggleTheme }) => {
           className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#2F80FF] to-[#56CCF2] p-[2px] cursor-pointer shadow-[0_0_15px_rgba(47,128,255,0.3)]"
         >
           <div className="w-full h-full rounded-full bg-white dark:bg-[#1a2233] flex items-center justify-center">
-            <span className="text-sm font-bold text-gray-800 dark:text-white">PR</span>
+            <span className="text-sm font-bold text-gray-800 dark:text-white">AS</span>
           </div>
         </motion.div>
         <div onClick={() => navigate('/profile')} className="cursor-pointer">
           <p className="text-xs text-gray-500 uppercase tracking-wider font-bold">Welcome back,</p>
-          <h1 className="text-lg font-black tracking-tight text-gray-900 dark:text-white">Priya</h1>
+          <h1 className="text-lg font-black tracking-tight text-gray-900 dark:text-white">Abhinav Saini</h1>
         </div>
       </div>
 

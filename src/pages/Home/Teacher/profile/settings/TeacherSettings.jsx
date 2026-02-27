@@ -40,7 +40,7 @@ const TeacherSettings = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.1 }}
           className="bg-emerald-50 dark:bg-[#15231a] border border-emerald-200 dark:border-[#23422e] p-5 rounded-[2.5rem] flex items-center justify-between shadow-sm dark:shadow-[0_0_20px_rgba(74,222,128,0.05)] cursor-pointer hover:scale-[1.02] transition-transform"
-          onClick={() => handleNavigation('/kyc-status')}
+          onClick={() => handleNavigation('/status')}
         >
            <div className="flex items-center gap-4">
               <div className="bg-emerald-100 dark:bg-[#4ade80]/10 p-3 rounded-2xl">

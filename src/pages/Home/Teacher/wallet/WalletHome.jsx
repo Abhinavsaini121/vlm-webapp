@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // <-- Imported useNavigate for dummy routes
 import {
   ChevronLeft,
   ArrowUpRight,
@@ -13,12 +14,13 @@ import { useTheme } from "../../../../hooks/useTheme";
 
 const WalletHome = () => {
   const { theme } = useTheme();
+  const navigate = useNavigate(); // <-- Initialized navigation hook
 
   const [showWithdraw, setShowWithdraw] = useState(false);
   const [amount, setAmount] = useState("");
   const [loading, setLoading] = useState(false);
   const [popup, setPopup] = useState(false);
-  const [transactions, setTransactions] = useState([
+  const[transactions, setTransactions] = useState([
     {
       id: 1,
       title: "Live Class: Quantum Physics",
@@ -41,7 +43,7 @@ const WalletHome = () => {
       setLoading(false);
       setPopup(true);
 
-      setTransactions((prev) => [
+      setTransactions((prev) =>[
         {
           id: Date.now(),
           title: "Withdrawal",
@@ -63,12 +65,18 @@ const WalletHome = () => {
       {/* HEADER */}
       <header className="flex justify-between items-center p-6 sticky top-0 z-40 bg-gray-50/80 dark:bg-[#0b0f1a]/80 backdrop-blur-md">
         <div className="flex items-center gap-4">
-          <button className="p-2 bg-white dark:bg-white/10 rounded-xl border border-gray-200 dark:border-white/10">
+          <button 
+            onClick={() => navigate(-1)} // <-- Added go-back route
+            className="p-2 bg-white dark:bg-white/10 rounded-xl border border-gray-200 dark:border-white/10"
+          >
             <ChevronLeft size={20} />
           </button>
           <h1 className="text-lg font-black">Wallet</h1>
         </div>
-        <button className="p-2 bg-emerald-100 dark:bg-emerald-500/20 rounded-xl">
+        <button 
+          onClick={() => navigate("/wallet/settings")} // <-- Added dummy route
+          className="p-2 bg-emerald-100 dark:bg-emerald-500/20 rounded-xl"
+        >
           <Banknote className="text-emerald-600 dark:text-emerald-400" />
         </button>
       </header>
@@ -101,9 +109,12 @@ const WalletHome = () => {
               dark:bg-emerald-500/20 dark:text-emerald-400 font-bold">
               +₹2,400 this week
             </span>
-            <span className="text-xs px-4 py-1 rounded-full
+            <span 
+              onClick={() => navigate("/incentives")} // <-- Added dummy route
+              className="text-xs px-4 py-1 rounded-full
               bg-blue-100 text-blue-700
-              dark:bg-emerald-500/10 dark:text-emerald-300 font-bold">
+              dark:bg-emerald-500/10 dark:text-emerald-300 font-bold cursor-pointer"
+            >
               View Incentive
             </span>
           </div>
@@ -113,20 +124,26 @@ const WalletHome = () => {
       {/* PAYOUT INFO */}
       <div className="grid grid-cols-2 gap-4 px-6 mt-6">
         {/* LAST PAYOUT */}
-        <div className="rounded-2xl p-4
+        <div 
+          onClick={() => navigate("/wallet/payouts/last")} // <-- Added dummy route
+          className="rounded-2xl p-4 cursor-pointer
           bg-white dark:bg-[#1a2233]
           border border-gray-200 dark:border-white/5
-          shadow-sm dark:shadow-none">
+          shadow-sm dark:shadow-none"
+        >
           <p className="text-xs uppercase text-gray-400">Last Payout</p>
           <p className="text-lg font-black mt-1">₹32,000</p>
           <p className="text-xs text-gray-500 mt-1">Oct 01, 2023</p>
         </div>
 
         {/* NEXT EST */}
-        <div className="rounded-2xl p-4
+        <div 
+          onClick={() => navigate("/wallet/payouts/upcoming")} // <-- Added dummy route
+          className="rounded-2xl p-4 cursor-pointer
           bg-white dark:bg-[#1a2233]
           border border-gray-200 dark:border-white/5
-          shadow-sm dark:shadow-none">
+          shadow-sm dark:shadow-none"
+        >
           <p className="text-xs uppercase text-gray-400">Next Est.</p>
           <p className="text-lg font-black text-emerald-600 dark:text-emerald-400 mt-1">
             ₹13,200
@@ -156,6 +173,7 @@ const WalletHome = () => {
             >
               <input
                 value={amount}
+                type="number"
                 onChange={(e) => setAmount(e.target.value)}
                 placeholder="Enter Amount"
                 className="w-full px-4 py-3 rounded-xl
@@ -177,14 +195,23 @@ const WalletHome = () => {
 
       {/* TRANSACTIONS */}
       <div className="px-6 space-y-3">
-        <p className="text-xs uppercase tracking-widest text-gray-400">
-          Recent Transactions
-        </p>
+        <div className="flex justify-between items-center">
+          <p className="text-xs uppercase tracking-widest text-gray-400">
+            Recent Transactions
+          </p>
+          <button 
+            onClick={() => navigate("/wallet/transactions")} // <-- Added dummy route
+            className="text-xs text-[#2F80FF] dark:text-[#56CCF2] font-bold"
+          >
+            View All
+          </button>
+        </div>
 
         {transactions.map((tx) => (
           <div
             key={tx.id}
-            className="rounded-2xl p-4 flex justify-between
+            onClick={() => navigate(`/wallet/transaction/${tx.id}`)} // <-- Added dummy route
+            className="rounded-2xl p-4 flex justify-between cursor-pointer
               bg-white dark:bg-[#111827]
               border border-gray-200 dark:border-white/10
               shadow-sm dark:shadow-none"
