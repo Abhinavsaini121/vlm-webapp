@@ -21,7 +21,7 @@ const Joinbattle = () => {
       {/* 1. Header & Timer */}
       <div className="pt-8 pb-4 text-center">
         <h1 className="text-3xl font-black tracking-tight">
-          Live Battle Lobby
+          Live Now Lobby
         </h1>
         <div className="flex items-center justify-center gap-2 mt-2">
           <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.8)]"></div>
@@ -201,7 +201,7 @@ const Joinbattle = () => {
             onClick={() => navigate("/liveclass")}
             className="w-full bg-gradient-to-r from-[#4cc9f0] to-[#4361ee] hover:brightness-110 text-white py-5 rounded-[25px] font-black text-2xl flex items-center justify-center gap-3 shadow-[0_10px_30px_rgba(76,201,240,0.3)] active:scale-95 transition-all"
           >
-            🔥 Enter Battle
+            🔥 Join Class
           </button>
         </div>
       </div>

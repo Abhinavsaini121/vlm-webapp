@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import videoFile from "../../assets/Home/liveclass.mp4";
+import videoFile from "../../assets/short2.webm";
 
 import {
   Clock,
