@@ -34,6 +34,7 @@ import HelpSupport from '../pages/Home/Teacher/profile/HelpSupport';
 import TeacherSettings from '../pages/Home/Teacher/profile/settings/TeacherSettings';
 import VideoUploadManager from '../pages/Home/Teacher/Home/upload/VideoUploadManager';
 import VideoDetailsForm from '../pages/Home/Teacher/Home/upload/VideoDetailsForm';
+import Liveteacher from '../pages/Liveteacher/Liveteacher';
 import ApplicationStatus from '../pages/Home/Teacher/profile/settings/ApplicationStatus';
 import PrivacyPolicy from '../pages/Home/Teacher/profile/settings/PrivacyPolicy';
 import TermsOfService from '../pages/Home/Teacher/profile/settings/TermsOfService';
@@ -55,6 +56,7 @@ const AppRoutes = () => {
       <Route path="/interview" element={<Interview />} />
 
       <Route path="/student-dashboard" element={<StudentDashboard />} />
+      <Route path="/Liveteacher" element={<Liveteacher />} />
       <Route path="/Popularcourse" element={<Popularcourse />} />
       <Route path="/Coursedetails" element={<Coursedetails />} />
       <Route path="/Curriculum" element={<Curriculum/>} />

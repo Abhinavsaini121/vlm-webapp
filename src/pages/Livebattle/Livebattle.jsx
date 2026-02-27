@@ -72,7 +72,7 @@ const Livebattle = () => {
   {/* Title */}
   <div className="text-center">
     <h1 className="text-3xl font-black tracking-tight">
-      Live Battle Arena
+      Live Now Arena
     </h1>
     <div className="flex items-center justify-center gap-2 mt-2">
       <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_#22c55e]"></div>
@@ -157,7 +157,7 @@ const Livebattle = () => {
               onClick={() => navigate("/joinbattle")}
               className="mt-5 w-full bg-[#3abef9] text-white py-3 rounded-2xl font-black text-sm hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-blue-500/10"
             >
-              Join Battle
+              Join Now
             </button>
           </div>
         ))}
@@ -206,7 +206,7 @@ const Livebattle = () => {
                   onClick={() => navigate("/joinbattle")}
                   className="bg-[#3abef9] text-white px-6 py-2.5 rounded-xl font-black text-xs hover:brightness-110 active:scale-90 transition-all shadow-md"
                 >
-                  Join Battle
+                  Join Now
                 </button>
               </div>
             ))}
