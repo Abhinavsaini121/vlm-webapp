@@ -140,7 +140,7 @@ const StudentDashboard = () => {
                   <span className="text-xl">🌟</span> Welcome Back,
                 </div>
                 <h1 className="text-2xl font-black tracking-tight leading-tight">
-                  Explorer Harsha!
+                  Explorer Harsh!
                 </h1>
                 <div className="text-[10px] text-[#3abef9] font-bold mt-1 uppercase">
                   320 / 500 Points
