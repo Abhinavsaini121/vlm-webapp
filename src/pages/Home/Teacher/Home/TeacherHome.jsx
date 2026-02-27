@@ -72,7 +72,7 @@ const Appbar = ({ theme, toggleTheme }) => {
         </motion.div>
         <div onClick={() => navigate('/profile')} className="cursor-pointer">
           <p className="text-xs text-gray-500 uppercase tracking-wider font-bold">Welcome back,</p>
-          <h1 className="text-lg font-black tracking-tight text-gray-900 dark:text-white">Abhinav Saini</h1>
+          <h1 className="text-lg font-bold tracking-tight text-gray-900 dark:text-white">Abhinav Saini</h1>
         </div>
       </div>
 

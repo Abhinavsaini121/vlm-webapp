@@ -39,6 +39,7 @@ import PrivacyPolicy from '../pages/Home/Teacher/profile/settings/PrivacyPolicy'
 import TermsOfService from '../pages/Home/Teacher/profile/settings/TermsOfService';
 import AppLanguage from '../pages/Home/Teacher/profile/settings/AppLanguage';
 import IncentiveBreakdown from '../pages/Home/Teacher/wallet/IncentiveBreakdown/IncentiveBreakdown';
+import PayoutHistory from '../pages/Home/Teacher/wallet/PayoutHistory';
 
 const AppRoutes = () => {
   return (
@@ -81,6 +82,7 @@ const AppRoutes = () => {
       <Route path="/terms" element={<TermsOfService />} />
       <Route path="/language" element={<AppLanguage />} />
       <Route path="/earnings" element={<WalletHome />} />
+      <Route path='/history' element={<PayoutHistory />} />
       <Route path="/incentives" element={<IncentiveBreakdown />} />
       <Route path="/shorts" element={<ShortsPage />} />
       <Route path="/reviews" element={<FeedbackReviews />} />

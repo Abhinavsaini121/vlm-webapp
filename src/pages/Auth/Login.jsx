@@ -1,191 +1,114 @@
 import React, { useState } from 'react';
-import { Smartphone, Lock, ChevronRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Smartphone } from 'lucide-react';
 
 const Login = () => {
     const [role, setRole] = useState('Student');
     const [mobile, setMobile] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
-    
-    const navigate = useNavigate();
 
-    const handleLogin = (e) => {
+    const handleSendOTP = (e) => {
         e.preventDefault();
-        
-        const mobileRegex = /^[6-9]\d{9}$/;
-        
-        if (!mobileRegex.test(mobile)) {
-            setError("Please enter valid Number!");
-            return;
-        }
-
-        if (password.length < 4) {
-            setError("Create strong password");
-            return;
-        }
-
-        setError("");
-        localStorage.setItem('userRole', role);
-        console.log("Role Saved:", role);
-
-        if (role === 'Student') navigate('/student-dashboard');
-        else if (role === 'Teacher') navigate('/teacher-dashboard');
-        else navigate('/parent-dashboard');
+        console.log("Sending OTP to:", mobile, "as", role);
+        // Add OTP logic here
     };
 
     return (
-        <div className="min-h-screen bg-[#050810] text-white font-sans flex items-center justify-center p-0 md:p-6 relative overflow-hidden">
-            
-            {/* --- ANIMATED BACKGROUND GLOWS (OPTIMIZED) --- */}
-            {/* Added 'transform-gpu' and reduced blur for performance */}
-            <motion.div 
-                animate={{ scale: [1, 1.1, 1], opacity: [0.2, 0.3, 0.2] }}
-                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                style={{ willChange: "transform, opacity" }}
-                className="absolute top-[-5%] right-[-5%] w-[300px] md:w-[400px] h-[300px] md:h-[400px] bg-blue-600/20 blur-[80px] rounded-full pointer-events-none transform-gpu"
-            ></motion.div>
-            
-            <motion.div 
-                animate={{ scale: [1.1, 1, 1.1], opacity: [0.2, 0.3, 0.2] }}
-                transition={{ duration: 10, repeat: Infinity, delay: 2, ease: "linear" }}
-                style={{ willChange: "transform, opacity" }}
-                className="absolute bottom-[-5%] left-[-5%] w-[300px] md:w-[400px] h-[300px] md:h-[400px] bg-indigo-600/20 blur-[80px] rounded-full pointer-events-none transform-gpu"
-            ></motion.div>
-
-            {/* --- MAIN CONTAINER --- */}
-            <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }} // Reduced duration slightly for snappier feel
-                // Changed backdrop-blur-3xl to backdrop-blur-md (HUGE performance boost)
-                className="w-full max-w-[450px] min-h-screen md:min-h-fit md:bg-gray-900/40 md:backdrop-blur-md md:border md:border-white/10 md:rounded-[2.5rem] p-8 md:p-10 flex flex-col relative z-10 shadow-2xl"
-            >
-
+        /* 
+           BACKGROUND IMAGE IMPLEMENTATION:
+           Replace '/path/to/your/bg-asset.jpg' with the actual path to your asset.
+           I've added a fallback dark color so you can see the UI structure immediately.
+        */
+        <div 
+            className="min-h-screen flex items-center justify-center p-4 font-sans text-white bg-[#090C15]"
+            style={{
+                backgroundImage: `url('src/assets/loginbg.png')`, 
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat'
+            }}
+        >
+            <div className="w-full max-w-[400px] flex flex-col items-center">
+                
                 {/* --- LOGO --- */}
-                <header className="flex flex-col items-center mb-10">
-                    <div className="flex items-center mb-8 select-none">
-                        <div className="bg-[#eef7ff] px-4 py-1 rounded-full flex items-center justify-center shadow-sm">
-                            <span className="text-black font-black text-xl tracking-tight">VLM</span>
-                        </div>
-                        <span className="text-[#5b96e1] font-bold text-xl ml-2 tracking-tight">Academy</span>
+                <div className="flex items-center mb-6 mt-10">
+                    <div className="bg-white px-3 py-1 rounded-full flex items-center justify-center">
+                        <span className="text-black font-extrabold text-[17px] tracking-tight">VLM</span>
                     </div>
-
-                    <h1 className="text-2xl md:text-3xl font-bold text-center leading-tight tracking-tight">
-                        Learning Never Sleeps <br />
-                        <span className="text-blue-400">at VLM Academy</span>
-                    </h1>
-                </header>
-
-                {/* --- ROLE SELECTOR --- */}
-                {/* Optimized background color to reduce transparency calculation */}
-                <div className="bg-gray-800/50 border border-white/5 p-1.5 rounded-full flex mb-8 relative">
-                    {['Student', 'Parent', 'Teacher'].map((item) => (
-                        <button
-                            key={item}
-                            onClick={() => setRole(item)}
-                            className={`flex-1 py-3 rounded-full text-[13px] font-bold transition-colors duration-200 relative z-10 ${
-                                role === item ? 'text-white' : 'text-gray-400 hover:text-gray-200'
-                            }`}
-                        >
-                            {item}
-                            {role === item && (
-                                <motion.div 
-                                    layoutId="activeTab"
-                                    className="absolute inset-0 bg-[#2563eb] rounded-full -z-10 shadow-lg"
-                                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                                />
-                            )}
-                        </button>
-                    ))}
+                    <span className="text-[#4A90E2] font-semibold text-xl ml-2 tracking-tight">Academy</span>
                 </div>
 
-                {/* --- FORM FIELDS --- */}
-                <form onSubmit={handleLogin} className="space-y-4">
-                    {/* Mobile Input */}
-                    <div className="relative">
-                        <div className="bg-gray-800/40 border border-white/10 rounded-2xl flex items-center p-4 focus-within:border-blue-500/50 focus-within:bg-gray-800/60 transition-colors">
-                            <Smartphone className="text-gray-400 mr-3" size={20} />
-                            <input
-                                type="tel"
-                                value={mobile}
-                                onChange={(e) => setMobile(e.target.value.replace(/\D/g, '').slice(0, 10))}
-                                placeholder="Mobile Number"
-                                className="bg-transparent border-none focus:ring-0 flex-1 text-sm font-medium outline-none placeholder-gray-500"
-                            />
-                        </div>
-                    </div>
+                {/* --- HEADING --- */}
+                <h1 className="text-[26px] font-bold text-center leading-[1.3] mb-10 tracking-tight">
+                    Learning Never Sleeps <br />
+                    <span className="text-[#4A90E2]">at VLM Academy</span>
+                </h1>
 
-                    {/* Password Input */}
-                    <div className="relative">
-                        <div className="bg-gray-800/40 border border-white/10 rounded-2xl flex items-center p-4 focus-within:border-blue-500/50 focus-within:bg-gray-800/60 transition-colors">
-                            <Lock className="text-gray-400 mr-3" size={20} />
-                            <input
-                                type="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                placeholder="Enter Password"
-                                className="bg-transparent border-none focus:ring-0 flex-1 text-sm font-medium outline-none placeholder-gray-500"
-                            />
-                        </div>
-                    </div>
-
-                    {/* Error Message */}
-                    <AnimatePresence>
-                        {error && (
-                            <motion.p 
-                                initial={{ opacity: 0, height: 0 }}
-                                animate={{ opacity: 1, height: 'auto' }}
-                                exit={{ opacity: 0, height: 0 }}
-                                className="text-red-400 text-xs font-bold ml-2"
+                {/* --- ROLE SELECTOR TABS --- */}
+                <div className="w-full bg-[#161B26] p-1.5 rounded-full flex mb-8 border border-white/5 shadow-inner">
+                    {['Student', 'Parent', 'Teacher'].map((item) => {
+                        const isActive = role === item;
+                        return (
+                            <button
+                                key={item}
+                                onClick={() => setRole(item)}
+                                className={`flex-1 py-3 rounded-full text-[13px] font-semibold transition-all duration-300 ${
+                                    isActive 
+                                    ? 'bg-[#2764D9] text-white shadow-[0_0_25px_0px_rgba(39,100,217,0.55)]' 
+                                    : 'text-gray-400 hover:text-gray-200 bg-transparent'
+                                }`}
                             >
-                                {error}
-                            </motion.p>
-                        )}
-                    </AnimatePresence>
+                                {item}
+                            </button>
+                        );
+                    })}
+                </div>
 
-                    {/* Login Button */}
-                    <motion.button 
-                        whileHover={{ scale: 1.01 }} // Reduced scale slightly
-                        whileTap={{ scale: 0.98 }}
-                        type="submit"
-                        className="w-full bg-[#2563eb] hover:bg-blue-500 text-white py-4 rounded-2xl text-sm font-black shadow-lg shadow-blue-600/20 transition-colors flex items-center justify-center gap-2"
+                {/* --- INPUT & OTP ROW --- */}
+                <div className="w-full bg-[#161B26] rounded-full p-1.5 flex items-center border border-white/5 mb-8">
+                    <div className="flex items-center flex-1 pl-4 pr-2">
+                        <Smartphone className="text-gray-500 mr-2.5" size={18} />
+                        <input
+                            type="tel"
+                            value={mobile}
+                            onChange={(e) => setMobile(e.target.value.replace(/\D/g, '').slice(0, 10))}
+                            placeholder="Mobile Number (+91)"
+                            className="bg-transparent border-none focus:ring-0 w-full text-[13px] font-medium outline-none placeholder-gray-500 text-white"
+                        />
+                    </div>
+                    <button 
+                        onClick={handleSendOTP}
+                        className="bg-[#2764D9] hover:bg-[#1d53b8] text-white py-3 px-6 rounded-full text-[13px] font-semibold transition-all shadow-[0_0_25px_0px_rgba(39,100,217,0.55)] whitespace-nowrap"
                     >
-                        LOGIN AS {role.toUpperCase()}
-                        <ChevronRight size={18} />
-                    </motion.button>
-                </form>
+                        Send OTP
+                    </button>
+                </div>
 
                 {/* --- DIVIDER --- */}
-                <div className="flex items-center gap-4 my-8">
-                    <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-gray-700"></div>
-                    <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Or</span>
-                    <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent to-gray-700"></div>
+                <div className="w-full flex items-center gap-4 mb-8">
+                    <div className="h-[1px] flex-1 bg-gray-800"></div>
+                    <span className="text-[12px] text-gray-400">Or continue with</span>
+                    <div className="h-[1px] flex-1 bg-gray-800"></div>
                 </div>
 
-                {/* --- GOOGLE SIGN IN --- */}
+                {/* --- GOOGLE BUTTON --- */}
                 <button 
-                    className="bg-gray-800/40 border border-white/10 w-full py-4 rounded-2xl flex items-center justify-center gap-3 transition-colors hover:bg-white/5 active:scale-[0.99]"
+                    className="w-full bg-[#161B26] hover:bg-[#1f2636] border border-white/5 py-3.5 rounded-full flex items-center justify-center gap-3 transition-colors mb-10"
                 >
-                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" className="w-5 h-5" />
-                    <span className="text-xs font-bold text-gray-200 uppercase tracking-widest">Sign in with Google</span>
+                    <img 
+                        src="https://www.svgrepo.com/show/475656/google-color.svg" 
+                        alt="Google" 
+                        className="w-5 h-5" 
+                    />
+                    <span className="text-[14px] font-medium text-white">Sign in with Google</span>
                 </button>
 
                 {/* --- FOOTER --- */}
-                <div className="mt-10 text-center">
-                    <p className="text-sm font-medium text-gray-500">
-                        New here? <button onClick={() => navigate('/signup')} className="text-blue-500 font-black hover:underline ml-1">Sign up</button>
+                <div className="mt-auto pb-6">
+                    <p className="text-[13px] text-gray-400">
+                        New here? <button className="text-[#4A90E2] font-semibold hover:underline ml-1 cursor-pointer">Sign up</button>
                     </p>
                 </div>
-            </motion.div>
 
-            <style dangerouslySetInnerHTML={{
-                __html: `
-                @media (max-width: 768px) {
-                    input { font-size: 16px !important; }
-                }
-                `}} />
+            </div>
         </div>
     );
 };

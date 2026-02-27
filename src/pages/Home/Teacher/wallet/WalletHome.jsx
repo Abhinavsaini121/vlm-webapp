@@ -6,6 +6,7 @@ import {
   Banknote,
   CheckCircle,
   Loader2,
+  HistoryIcon,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -74,10 +75,10 @@ const WalletHome = () => {
           <h1 className="text-lg font-black">Wallet</h1>
         </div>
         <button 
-          onClick={() => navigate("/wallet/settings")} // <-- Added dummy route
+          onClick={() => navigate("/history")} // <-- Added dummy route
           className="p-2 bg-emerald-100 dark:bg-emerald-500/20 rounded-xl"
         >
-          <Banknote className="text-emerald-600 dark:text-emerald-400" />
+          <HistoryIcon className="text-emerald-600 dark:text-emerald-400" />
         </button>
       </header>
 
@@ -125,8 +126,7 @@ const WalletHome = () => {
       <div className="grid grid-cols-2 gap-4 px-6 mt-6">
         {/* LAST PAYOUT */}
         <div 
-          onClick={() => navigate("/wallet/payouts/last")} // <-- Added dummy route
-          className="rounded-2xl p-4 cursor-pointer
+          className="rounded-2xl p-4 
           bg-white dark:bg-[#1a2233]
           border border-gray-200 dark:border-white/5
           shadow-sm dark:shadow-none"
@@ -138,8 +138,8 @@ const WalletHome = () => {
 
         {/* NEXT EST */}
         <div 
-          onClick={() => navigate("/wallet/payouts/upcoming")} // <-- Added dummy route
-          className="rounded-2xl p-4 cursor-pointer
+          
+          className="rounded-2xl p-4 
           bg-white dark:bg-[#1a2233]
           border border-gray-200 dark:border-white/5
           shadow-sm dark:shadow-none"
@@ -159,7 +159,7 @@ const WalletHome = () => {
             <motion.button
               whileTap={{ scale: 0.97 }}
               onClick={() => setShowWithdraw(true)}
-              className="w-full py-3 rounded-2xl font-black
+              className="w-full py-3 rounded-2xl font-black cursor-pointer
                 bg-gradient-to-r from-[#2F80FF] to-[#56CCF2]
                 text-white flex justify-center gap-2"
             >
@@ -184,7 +184,7 @@ const WalletHome = () => {
 
               <button
                 onClick={handleWithdraw}
-                className="w-full bg-gradient-to-r from-[#2F80FF] to-[#56CCF2] py-3 rounded-xl font-black text-white flex justify-center"
+                className="w-full cursor-pointer bg-gradient-to-r from-[#2F80FF] to-[#56CCF2] py-3 rounded-xl font-black text-white flex justify-center"
               >
                 {loading ? <Loader2 className="animate-spin" /> : "Confirm Withdraw"}
               </button>
@@ -200,7 +200,7 @@ const WalletHome = () => {
             Recent Transactions
           </p>
           <button 
-            onClick={() => navigate("/wallet/transactions")} // <-- Added dummy route
+            onClick={() => navigate("/history")} // <-- Added dummy route
             className="text-xs text-[#2F80FF] dark:text-[#56CCF2] font-bold"
           >
             View All
