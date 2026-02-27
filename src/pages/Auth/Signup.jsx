@@ -21,8 +21,10 @@ const Signup = () => {
 
   return (
     /* --- RESPONSIVE BACKGROUND IMAGE SETUP --- */
-    <div className="min-h-screen font-sans flex items-center justify-center p-0 md:p-6 relative overflow-hidden bg-[#090C15] bg-cover bg-center bg-[url('src/assets/loginmobilebg.png')] 
-                       md:bg-[url('src/assets/loginbg.png')] text-white">
+    <div className="min-h-screen text-white font-sans flex items-center justify-center p-0 md:p-6 relative overflow-hidden bg-[#090C15] bg-cover bg-center bg-no-repeat 
+            bg-[url('src/assets/loginmobilebg.png')] 
+            md:bg-[url('src/assets/loginbg.png')]"
+    >
 
       {/* Background Blobs (Kept for subtle blend, pointer-events-none ensures no scroll interference) */}
       <div className="absolute top-[-10%] right-[-10%] w-[300px] h-[300px] bg-blue-600/10 blur-[120px] rounded-full pointer-events-none"></div>
@@ -56,8 +58,8 @@ const Signup = () => {
               key={item}
               onClick={() => setRole(item)}
               className={`flex-1 py-2.5 rounded-full text-[13px] font-bold transition-all duration-300 ${role === item
-                  ? neonStyle
-                  : 'text-gray-400 hover:text-gray-200 border-[1.5px] border-transparent bg-transparent'
+                ? neonStyle
+                : 'text-gray-400 hover:text-gray-200 border-[1.5px] border-transparent bg-transparent'
                 }`}
             >
               {item}
