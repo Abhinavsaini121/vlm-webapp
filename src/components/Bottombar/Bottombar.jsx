@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Home, Star, User, Film, Swords, ArrowRightLeft } from 'lucide-react';
+import { Home, Star, User, Film, Swords, ArrowRightLeft, HelpCircle } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
@@ -28,7 +28,8 @@ const FloatingNav = () => {
     Teacher: [
       { id: 'Home', label: 'Home', icon: Home, route: '/teacher-dashboard' },
       { id: 'Shorts', label: 'Shorts', icon: Film, route: '/shorts' },
-      // Earnings option removed from here
+      // Added Doubts section only for Teacher
+      { id: 'Doubts', label: 'Doubts', icon: HelpCircle, route: '/doubts' }, 
       { id: 'Reviews', label: 'Reviews', icon: Star, route: '/reviews' },
       { id: 'Profile', label: 'Profile', icon: User, route: '/TeacherProfile' },
     ],

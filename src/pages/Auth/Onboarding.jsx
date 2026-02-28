@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, ChevronRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,11 +8,13 @@ import onboard1 from '../../assets/onboard images/onboard1.svg';
 import onboard2 from '../../assets/onboard images/onboard2.svg';
 import onboard3 from '../../assets/onboard images/onboard3.svg';
 
+import bgGlowImage from '../../assets/onboard images/bgGlow.svg';
+
 const slides = [
   {
     id: 1,
     title: "Online Learning",
-    description: "We Provide Online Classes and Pre-recorded Lectures!",
+    description: "We Provide Classes Online Classes and Pre Recorded Leactures.!",
     image: onboard1,
   },
   {
@@ -34,7 +36,6 @@ const Onboarding = () => {
   const navigate = useNavigate();
 
   // --- 🚀 PERFORMANCE FIX: PRELOAD IMAGES ---
-  // Ye background me saari images download kar lega taaki lag na ho
   useEffect(() => {
     slides.forEach((slide) => {
       const img = new Image();
@@ -50,24 +51,14 @@ const Onboarding = () => {
     }
   };
 
-  // --- SMOOTH ANIMATION VARIANTS ---
   const containerVariants = {
     hidden: { opacity: 0, x: 50 },
     visible: { 
       opacity: 1, 
       x: 0,
-      transition: { 
-        type: "spring", 
-        stiffness: 100, 
-        damping: 20, 
-        mass: 1 
-      }
+      transition: { type: "spring", stiffness: 100, damping: 20, mass: 1 }
     },
-    exit: { 
-      opacity: 0, 
-      x: -50,
-      transition: { duration: 0.2 } 
-    }
+    exit: { opacity: 0, x: -50, transition: { duration: 0.2 } }
   };
 
   const textVariants = {
@@ -76,24 +67,27 @@ const Onboarding = () => {
   };
 
   return (
-    <div className="h-screen w-full bg-[#050810] text-white font-sans flex flex-col overflow-hidden relative">
+    <div className="h-[100dvh] w-full bg-[#050810] text-white font-sans flex flex-col overflow-hidden relative">
       
-      {/* Background Glow Effect for Aesthetics */}
-      <div className="absolute top-[-10%] left-[-10%] w-64 h-64 bg-purple-600/20 blur-[100px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-64 h-64 bg-blue-600/10 blur-[100px] rounded-full pointer-events-none" />
+      <img src={bgGlowImage} alt="glow" className="absolute top-0 right-0 w-[400px] opacity-80 pointer-events-none z-0 mix-blend-screen" />
+      
+      {/* Subtle center-bottom glow to highlight the text gently */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full bg-[#3b82f6]/10 blur-[100px] pointer-events-none z-0" />
+
+      {/* ========================================= */}
 
       {/* --- SKIP BUTTON --- */}
-      <header className="flex justify-end px-6 py-6 z-10">
+      <header className="flex justify-end px-6 pt-12 pb-4 z-10 relative">
         <button 
           onClick={() => navigate('/login')}
-          className="text-gray-500 text-xs font-bold tracking-widest uppercase hover:text-white transition-colors"
+          className="text-white font-semibold text-sm tracking-wide hover:text-gray-300 transition-colors"
         >
           Skip
         </button>
       </header>
 
       {/* --- MAIN CONTENT AREA --- */}
-      <main className="flex-1 flex flex-col items-center justify-center w-full relative">
+      <main className="flex-1 flex flex-col items-center justify-center w-full relative z-10 -mt-8">
         <AnimatePresence mode='wait'>
           <motion.div 
             key={currentStep}
@@ -105,27 +99,27 @@ const Onboarding = () => {
           >
             
             {/* 1. Image Section */}
-            <div className="w-full h-[350px] md:h-[450px] flex items-center justify-center mb-8 relative">
+            <div className="w-full h-[320px] md:h-[400px] flex items-center justify-center mb-8 relative">
               <img 
                 src={slides[currentStep].image} 
                 alt={slides[currentStep].title}
-                className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(139,92,246,0.3)]"
-                loading="eager" // Force immediate loading
+                className="w-full h-full object-contain"
+                loading="eager" 
               />
             </div>
 
             {/* 2. Text Section */}
-            <div className="text-center space-y-3 max-w-sm mx-auto">
+            <div className="text-center space-y-3 max-w-[300px] mx-auto">
               <motion.h2 
                 variants={textVariants}
-                className="text-3xl font-black tracking-tight text-white"
+                className="text-2xl font-bold tracking-wide text-white drop-shadow-md"
               >
                 {slides[currentStep].title}
               </motion.h2>
               
               <motion.p 
                 variants={textVariants}
-                className="text-gray-400 text-sm font-medium leading-relaxed"
+                className="text-gray-300 text-sm font-normal leading-relaxed"
               >
                 {slides[currentStep].description}
               </motion.p>
@@ -136,7 +130,7 @@ const Onboarding = () => {
       </main>
 
       {/* --- BOTTOM CONTROLS --- */}
-      <footer className="px-8 py-8 w-full flex justify-between items-center z-10">
+      <footer className="px-8 pb-12 pt-4 w-full flex justify-between items-center z-10 relative">
         
         {/* Pagination Dots */}
         <div className="flex gap-2">
@@ -145,22 +139,21 @@ const Onboarding = () => {
               key={index}
               animate={{
                 width: currentStep === index ? 24 : 8,
-                backgroundColor: currentStep === index ? '#9333ea' : '#334155',
-                opacity: currentStep === index ? 1 : 0.5
+                backgroundColor: currentStep === index ? '#4ea8de' : '#ffffff',
+                opacity: currentStep === index ? 1 : 0.6
               }}
               className="h-2 rounded-full transition-all duration-300"
             />
           ))}
         </div>
 
-        {/* Next/Finish Button */}
+        {/* Next Circular Blue Button */}
         <motion.button 
           whileTap={{ scale: 0.9 }}
           onClick={handleNext}
-          className="group flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-bold text-sm shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] transition-all"
+          className="flex items-center justify-center w-14 h-14 bg-[#3b82f6] text-white rounded-full shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:bg-blue-500 transition-all"
         >
-          {currentStep === slides.length - 1 ? "Get Started" : "Next"}
-          <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
+          <ArrowRight size={24} strokeWidth={2.5} />
         </motion.button>
 
       </footer>

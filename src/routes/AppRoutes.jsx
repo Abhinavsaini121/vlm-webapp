@@ -41,6 +41,9 @@ import TermsOfService from '../pages/Home/Teacher/profile/settings/TermsOfServic
 import AppLanguage from '../pages/Home/Teacher/profile/settings/AppLanguage';
 import IncentiveBreakdown from '../pages/Home/Teacher/wallet/IncentiveBreakdown/IncentiveBreakdown';
 import PayoutHistory from '../pages/Home/Teacher/wallet/PayoutHistory';
+import ClassSchedule from '../pages/Home/Teacher/Home/ClassSchedule/ClassSchedule';
+import InteractionCenter from '../pages/Home/Teacher/Interaction/InteractionCenter';
+import ChatDetail from '../pages/Home/Teacher/Interaction/Chat/ChatDetail';
 
 const AppRoutes = () => {
   return (
@@ -72,6 +75,7 @@ const AppRoutes = () => {
       <Route path="/teacher-dashboard" element={<TeacherHome />} />
       <Route path="/upload-file" element={<VideoUploadManager />} />
       <Route path="/upload" element={<VideoUploadManager />} />
+      <Route path="/schedules" element={<ClassSchedule />} />
       <Route path="/notifications" element={<Notifications />} />
       <Route path="/scheduleclaas" element={<ScheduleForm />} />
       <Route path="/live" element={<LiveClassRoom />} />
@@ -89,6 +93,8 @@ const AppRoutes = () => {
       <Route path="/shorts" element={<ShortsPage />} />
       <Route path="/reviews" element={<FeedbackReviews />} />
       <Route path="/your-videos" element={<YourVideos />} />
+      <Route path="/doubts" element={<InteractionCenter />} />
+      <Route path="/chat/:id" element={<ChatDetail />} />
 
       <Route path="*" element={<Maintenance />} />
     </Routes>

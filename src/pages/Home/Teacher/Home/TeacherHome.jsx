@@ -197,7 +197,7 @@ const Dashboard = () => {
             <motion.h3 variants={itemVariants} className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] ml-1">Today's Schedule</motion.h3>
             
             <motion.button 
-              onClick={() => navigate('/schedule')}
+              onClick={() => navigate('/schedules')}
               whileTap={{ scale: 0.95 }} 
               className="text-xs text-[#2F80FF] dark:text-[#56CCF2] font-black tracking-wide hover:underline"
             >
