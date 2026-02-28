@@ -42,7 +42,7 @@ const ProfileHome = () => {
     { icon: <ShieldCheck size={20} className="text-emerald-500" />, label: "KYC & Documents", path: "/status", verified: true },
     { icon: <VideoIcon size={20} />, label: "Your Videos", path: "/your-videos", verified: false },
     { icon: <LifeBuoy size={20} />, label: "Help & Support", path: "/support", verified: false },
-    { icon: <TrendingUp size={20} />, label: "Performance", path: "/performance", verified: false },
+    // { icon: <TrendingUp size={20} />, label: "Performance", path: "/performance", verified: false },
     { icon: <MessageSquare size={20} />, label: "Feedback", path: "/reviews", verified: false },
     { icon: <SettingsIcon size={20} />, label: "System Settings", path: "/setting", verified: false },
   ];

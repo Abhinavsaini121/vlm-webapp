@@ -62,7 +62,7 @@ const Appbar = ({ theme, toggleTheme }) => {
         {/* --- 1. PROFILE CLICKABLE --- */}
         <motion.div 
           whileHover={{ scale: 1.05 }}
-          onClick={() => navigate('/profile')}
+          onClick={() => navigate('/TeacherProfile')}
           // GRADIENT & SHADOW: Added glow to profile ring
           className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#2F80FF] to-[#56CCF2] p-[2px] cursor-pointer shadow-[0_0_15px_rgba(47,128,255,0.3)]"
         >
