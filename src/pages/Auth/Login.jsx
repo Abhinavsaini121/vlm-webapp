@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Smartphone, Lock, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import loginMobileBg from "../../assets/loginmobilebg.png";
+import loginBg from "../../assets/loginbg.png";
 
 const Login = () => {
     const [role, setRole] = useState('Student');
@@ -42,9 +44,12 @@ const Login = () => {
     return (
         /* --- RESPONSIVE BACKGROUND IMAGE SETUP --- */
         /* bg-[url(...)] mobile ke liye, md:bg-[url(...)] desktop ke liye */
-        <div className="min-h-screen text-white font-sans flex items-center justify-center p-0 md:p-6 relative overflow-hidden bg-[#090C15] bg-cover bg-center bg-no-repeat bg-[url('src/assets/loginmobilebg.png')] 
-                       md:bg-[url('src/assets/loginbg.png')]">
-
+        <div
+            className="min-h-screen text-white font-sans flex items-center justify-center p-0 md:p-6 relative overflow-hidden bg-[#090C15] bg-cover bg-center bg-no-repeat"
+            style={{
+                backgroundImage: `url(${window.innerWidth >= 768 ? loginBg : loginMobileBg})`
+            }}
+        >
             {/* --- ANIMATED BACKGROUND GLOWS (KEPT AS REQUESTED) --- */}
             <motion.div
                 animate={{ scale: [1, 1.1, 1], opacity: [0.2, 0.3, 0.2] }}
