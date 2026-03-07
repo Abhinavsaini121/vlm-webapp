@@ -23,7 +23,7 @@ const Onboarding = () => {
     if (currentStep < slides.length - 1) {
       setCurrentStep(currentStep + 1);
     } else {
-      navigate('/login'); 
+      navigate('/language'); 
     }
   };
 

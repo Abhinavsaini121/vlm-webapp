@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 const HelpSupport = () => {
   const navigate = useNavigate();
   const [activeFaq, setActiveFaq] = useState(null);
-
+ 
   // Dummy FAQ Data
   const faqs = [
     { id: 1, q: "When will I receive my monthly payout?", a: "Payouts are processed on the 1st of every month. It may take 24-48 hours to reflect in your bank account depending on your bank's processing time." },
@@ -193,7 +193,6 @@ const HelpSupport = () => {
            <CheckCircle2 size={14} className="text-emerald-600 dark:text-[#4ade80]" />
            <span className="text-[9px] font-black text-emerald-600 dark:text-[#4ade80] uppercase tracking-[0.1em]">All systems operational • v2.4</span>
         </motion.div>
-
       </div>
     </div>
   );

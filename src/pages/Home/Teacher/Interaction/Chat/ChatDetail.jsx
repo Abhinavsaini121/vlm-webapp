@@ -6,7 +6,7 @@ import {
   Paperclip, 
   Mic,
   CheckCheck,
-  Zap,
+  Zap, 
   X,
   FileText
 } from 'lucide-react';

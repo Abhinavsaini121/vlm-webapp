@@ -44,6 +44,9 @@ import PayoutHistory from '../pages/Home/Teacher/wallet/PayoutHistory';
 import ClassSchedule from '../pages/Home/Teacher/Home/ClassSchedule/ClassSchedule';
 import InteractionCenter from '../pages/Home/Teacher/Interaction/InteractionCenter';
 import ChatDetail from '../pages/Home/Teacher/Interaction/Chat/ChatDetail';
+import ChooseLanguage from '../pages/Auth/Language/ChooseLanguage';
+import CreateProfile from '../pages/Auth/CreateProfile/CreateProfile';
+import SelectClass from '../pages/Auth/SelectClass/SelectClass';
 
 const AppRoutes = () => {
   return (
@@ -55,6 +58,9 @@ const AppRoutes = () => {
       <Route path="/" element={<Onboarding />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="createProfile" element={<CreateProfile />} />
+      <Route path="class" element={<SelectClass />} />
+      <Route path="/language" element={<ChooseLanguage />} />
       <Route path="/upload-docs" element={<UploadDocs />} />
       <Route path="/interview" element={<Interview />} />
 

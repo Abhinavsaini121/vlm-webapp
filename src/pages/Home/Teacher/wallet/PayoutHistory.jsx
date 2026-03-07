@@ -97,8 +97,8 @@ const PayoutHistory = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 + (index * 0.1) }}
-                onClick={() => navigate(`/payout/${payout.id}`)}
-                className="bg-white dark:bg-[#1a2233] border border-gray-200 dark:border-white/10 rounded-[2rem] p-5 cursor-pointer shadow-sm dark:shadow-none hover:shadow-md hover:border-blue-200 dark:hover:border-[#2F80FF]/30 active:scale-[0.98] transition-all group"
+                // onClick={() => navigate(`/payout/${payout.id}`)}
+                className="bg-white dark:bg-[#1a2233] border border-gray-200 dark:border-white/10 rounded-[2rem] p-5 shadow-sm dark:shadow-none hover:shadow-md hover:border-blue-200 dark:hover:border-[#2F80FF]/30 active:scale-[0.98] transition-all group"
               >
                  <div className="flex justify-between items-start mb-4">
                     <div className="flex items-center gap-4">
