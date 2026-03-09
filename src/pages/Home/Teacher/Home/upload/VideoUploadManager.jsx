@@ -104,7 +104,7 @@ const VideoUploadManager = () => {
             />
           )}
           
-          {step === 4 && selectedFile && (
+          {step === 4 && selectedFile && (  
             <VideoReview 
               key="step4" 
               file={selectedFile} 

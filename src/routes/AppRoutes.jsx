@@ -48,7 +48,8 @@ import ChooseLanguage from '../pages/Auth/Language/ChooseLanguage';
 import CreateProfile from '../pages/Auth/CreateProfile/CreateProfile';
 import SelectClass from '../pages/Auth/SelectClass/SelectClass';
 import OnboardingFlow from '../pages/Auth/CreateProfile/OnboardingFlow';
-
+import Reward from '../pages/Reward/Reward';
+import Spin from '../pages/Spin/Spin';
 const AppRoutes = () => {
   return (
     <Routes>
@@ -66,6 +67,8 @@ const AppRoutes = () => {
       <Route path="/interview" element={<Interview />} />
       <Route path="/welcome" element={<OnboardingFlow />} />
 
+      <Route path="/Reward" element={<Reward />} />
+      <Route path="/Spin" element={<Spin />} />
       <Route path="/student-dashboard" element={<StudentDashboard />} />
       <Route path="/Liveteacher" element={<Liveteacher />} />
       <Route path="/Popularcourse" element={<Popularcourse />} />

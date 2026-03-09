@@ -278,7 +278,7 @@ const ShortsPage = () => {
 
       </div>
 
-      <style jsx>{`
+      <style jsx>{`  
         .no-scrollbar::-webkit-scrollbar { display: none; }
         @keyframes marquee {
           0% { transform: translateX(0); }

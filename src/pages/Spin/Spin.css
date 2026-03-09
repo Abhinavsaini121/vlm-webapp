@@ -1,0 +1,180 @@
+/* Reward.css */
+.reward-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #0b1120; /* Dark navy background */
+  font-family: 'Arial', sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+.title {
+  color: #ffffff;
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 50px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.wheel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Gold outer glow */
+  box-shadow: 0 0 40px rgba(255, 215, 0, 0.3), 0 0 100px rgba(138, 43, 226, 0.2);
+  border-radius: 50%;
+}
+
+/* The top golden pointer */
+.pointer {
+  position: absolute;
+  top: -20px;
+  z-index: 10;
+  width: 40px;
+  height: 50px;
+  background: linear-gradient(to bottom, #ffe600, #ff8c00);
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
+}
+
+/* The glowing border around the wheel */
+.wheel-border {
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffd700, #ff8c00, #ffd700, #ff8c00);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px; /* Thickness of the border */
+}
+
+/* The actual spinning wheel */
+.wheel {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  /* Alternating dark purple backgrounds */
+  background: conic-gradient(
+    #2c1654 0deg 45deg,
+    #1b0a3a 45deg 90deg,
+    #2c1654 90deg 135deg,
+    #1b0a3a 135deg 180deg,
+    #2c1654 180deg 225deg,
+    #1b0a3a 225deg 270deg,
+    #2c1654 270deg 315deg,
+    #1b0a3a 315deg 360deg
+  );
+  /* Easing makes it spin fast and slow down realistically */
+  transition: transform 4s cubic-bezier(0.17, 0.84, 0.44, 1);
+}
+
+/* Golden lines separating the slices */
+.line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 50%;
+  background: linear-gradient(to bottom, #ffd700, transparent);
+  transform-origin: bottom;
+  z-index: 1;
+}
+
+/* Text inside the slices */
+.slice {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100px; /* Width of the text area */
+  height: 50%;
+  margin-left: -50px; /* Half of width to center */
+  transform-origin: bottom center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 25px;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.slice-text {
+  color: #ffdf00;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  text-transform: capitalize;
+  line-height: 1.2;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+}
+
+.coin-icon {
+  width: 18px;
+  height: 18px;
+  background: radial-gradient(#ffe600, #ffaa00);
+  border-radius: 50%;
+  margin-bottom: 4px;
+  border: 1px solid #fff;
+  box-shadow: inset 0 0 2px rgba(0,0,0,0.5);
+}
+
+/* Center play button */
+.center-circle {
+  position: absolute;
+  z-index: 5;
+  width: 60px;
+  height: 60px;
+  background: #8a2be2;
+  border: 4px solid #ffd700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 15px rgba(0,0,0,0.8);
+}
+
+.play-triangle {
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 18px solid #ffd700;
+  margin-left: 5px; /* Visual center adjustment */
+}
+
+/* Bottom Spin Now Button */
+.spin-btn {
+  margin-top: 60px;
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  color: white;
+  border: none;
+  padding: 15px 50px;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 40px;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0, 242, 254, 0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.spin-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 25px rgba(0, 242, 254, 0.5);
+}
+
+.spin-btn:active {
+  transform: scale(0.95);
+}
+
+.spin-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}

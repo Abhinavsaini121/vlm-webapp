@@ -101,7 +101,10 @@ const StudentDashboard = () => {
         animate={{ y: 0, opacity: 1 }}
         className="flex items-center justify-between px-4 py-3 sticky top-0 bg-white/80 dark:bg-[#0a0d14]/80 backdrop-blur-md z-50 border-b border-gray-100 dark:border-transparent"
       >
-        <div className="bg-gray-100 dark:bg-[#3abef9]/20 p-2 rounded-lg border border-gray-200 dark:border-[#3abef9]/30">
+        <div
+          onClick={() => navigate("/Reward")}
+          className="bg-gray-100 dark:bg-[#3abef9]/20 p-2 rounded-lg border border-gray-200 dark:border-[#3abef9]/30 cursor-pointer"
+        >
           <Gift className="w-5 h-5 text-[#3abef9]" />
         </div>
 
