@@ -47,6 +47,7 @@ import ChatDetail from '../pages/Home/Teacher/Interaction/Chat/ChatDetail';
 import ChooseLanguage from '../pages/Auth/Language/ChooseLanguage';
 import CreateProfile from '../pages/Auth/CreateProfile/CreateProfile';
 import SelectClass from '../pages/Auth/SelectClass/SelectClass';
+import OnboardingFlow from '../pages/Auth/CreateProfile/OnboardingFlow';
 
 const AppRoutes = () => {
   return (
@@ -58,11 +59,12 @@ const AppRoutes = () => {
       <Route path="/" element={<Onboarding />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <Route path="createProfile" element={<CreateProfile />} />
-      <Route path="class" element={<SelectClass />} />
+      <Route path="/createProfile" element={<CreateProfile />} />
+      <Route path="/class" element={<SelectClass />} />
       <Route path="/language" element={<ChooseLanguage />} />
       <Route path="/upload-docs" element={<UploadDocs />} />
       <Route path="/interview" element={<Interview />} />
+      <Route path="/welcome" element={<OnboardingFlow />} />
 
       <Route path="/student-dashboard" element={<StudentDashboard />} />
       <Route path="/Liveteacher" element={<Liveteacher />} />

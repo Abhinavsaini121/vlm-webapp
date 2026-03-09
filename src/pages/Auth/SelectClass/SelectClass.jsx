@@ -35,7 +35,7 @@ const SelectClass = () => {
     // Auto-redirect logic
     setTimeout(() => {
       // Save selection if needed: localStorage.setItem('selectedClass', className);
-      navigate('/student-dashboard'); 
+      navigate('/welcome'); 
     }, 400); // Small delay to show the click animation
   };
 
