@@ -97,7 +97,7 @@ const Reward = () => {
     navigate("/Mcq");
   } 
   else if (card.mainTitle === "Referral") {
-    navigate("/refer");
+    navigate("/Refer");
   }
 }}
             variants={cardVariants}
