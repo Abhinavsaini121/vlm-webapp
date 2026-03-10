@@ -88,17 +88,23 @@ const Reward = () => {
       >
         {rewardCards.map((card) => (
           <motion.div
-  key={card.id}
-  onClick={() => {
-    if (card.mainTitle === "Spin & Win") {
-      navigate("/spin");
-    }
-  }}
-  variants={cardVariants}
-  whileHover={{ y: -8, scale: 1.02 }}
-  whileTap={{ scale: 0.95 }}
-  className="bg-gradient-to-br from-[#4cc9f0] to-[#2F80FF] rounded-[40px] p-6 flex flex-col items-center justify-between aspect-square lg:aspect-[4/5] shadow-[0_20px_40px_rgba(76,201,240,0.3)] cursor-pointer group relative overflow-hidden"
->
+            key={card.id}
+          onClick={() => {
+  if (card.mainTitle === "Spin & Win") {
+    navigate("/spin");
+  } 
+  else if (card.mainTitle === "Daily MCQ") {
+    navigate("/Mcq");
+  } 
+  else if (card.mainTitle === "Referral") {
+    navigate("/refer");
+  }
+}}
+            variants={cardVariants}
+            whileHover={{ y: -8, scale: 1.02 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-gradient-to-br from-[#4cc9f0] to-[#2F80FF] rounded-[40px] p-6 flex flex-col items-center justify-between aspect-square lg:aspect-[4/5] shadow-[0_20px_40px_rgba(76,201,240,0.3)] cursor-pointer group relative overflow-hidden"
+          >
             {/* Glossy Overlay Effect */}
             <div className="absolute top-0 left-0 w-full h-full bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
 
