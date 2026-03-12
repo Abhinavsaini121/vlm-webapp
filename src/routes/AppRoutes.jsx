@@ -52,6 +52,9 @@ import Reward from '../pages/Reward/Reward';
 import Spin from '../pages/Spin/Spin';
 import Mcq from '../pages/Mcq/Mcq';
 import Refer from '../pages/Refer/Refer';
+import Wallet from '../pages/Wallet/Wallet';
+import Viewall from '../pages/Wallet/Viewall';
+
 const AppRoutes = () => {
   return (
     <Routes>
@@ -69,6 +72,8 @@ const AppRoutes = () => {
       <Route path="/interview" element={<Interview />} />
       <Route path="/welcome" element={<OnboardingFlow />} />
 
+      <Route path="/Wallet" element={<Wallet/>} />
+      <Route path="/Viewall" element={<Viewall/>} />
       <Route path="/Reward" element={<Reward />} />
       <Route path="/Spin" element={<Spin />} />
       <Route path="/Mcq" element={<Mcq />} />

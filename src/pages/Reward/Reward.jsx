@@ -48,12 +48,12 @@ const Reward = () => {
       icon: "https://cdn-icons-png.flaticon.com/512/1169/1169950.png", // Gift referral icon
     },
     {
-      id: 4,
-      topLabel: "Wallet",
-      mainTitle: "wallet",
-      badge: "Cashback",
-      icon: "https://cdn-icons-png.flaticon.com/512/855/855279.png", // Wallet icon
-    },
+  id: 4,
+  topLabel: "Wallet",
+  mainTitle: "Wallet",
+  badge: "Cashback",
+  icon: "https://cdn-icons-png.flaticon.com/512/855/855279.png",
+},
   ];
 
   return (
@@ -99,6 +99,10 @@ const Reward = () => {
   else if (card.mainTitle === "Referral") {
     navigate("/Refer");
   }
+else if (card.mainTitle === "Wallet") {
+    navigate("/Wallet");
+  }
+
 }}
             variants={cardVariants}
             whileHover={{ y: -8, scale: 1.02 }}
