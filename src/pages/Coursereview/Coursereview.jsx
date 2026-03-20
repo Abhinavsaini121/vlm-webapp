@@ -70,9 +70,11 @@ export const Coursereview = () => {
             ))}
           </div>
           <span className="text-gray-500 font-bold text-sm tracking-wide">
-            Based on 448 Reviews
+            Based on 48 Reviews
           </span>
         </div>
+
+
 
         {/* 3. Filter Pills (Horizontal Scroll) */}
         <div className="flex gap-3 overflow-x-auto no-scrollbar py-6">
